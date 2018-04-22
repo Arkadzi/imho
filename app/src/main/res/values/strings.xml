@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">IMHO</string>
+    <string name="err_network_connection">No internet. Please, check connection</string>
 </resources>

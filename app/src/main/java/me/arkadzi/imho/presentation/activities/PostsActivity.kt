@@ -1,14 +1,15 @@
-package me.arkadzi.imho
+package me.arkadzi.imho.presentation.activities
 
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import kotlinx.android.synthetic.main.activity_main.*
-class MainActivity : AppCompatActivity() {
+import me.arkadzi.imho.R
+
+class PostsActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-
+        activityComponent.inject(this)
     }
+
+
 }
