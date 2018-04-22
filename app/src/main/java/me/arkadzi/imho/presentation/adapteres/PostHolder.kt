@@ -13,6 +13,7 @@ class PostHolder(inflater: LayoutInflater, parent: ViewGroup) :
         LayoutContainer {
 
     override fun bind(data: Post) {
+        tvTitle.text = data.title
         tvPost.text = data.body
     }
 

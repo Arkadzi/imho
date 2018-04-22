@@ -5,6 +5,7 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.View
 import kotlinx.android.synthetic.main.activity_main.*
 import me.arkadzi.imho.R
+import me.arkadzi.imho.app.utils.navigateToDetails
 import me.arkadzi.imho.app.utils.toast
 import me.arkadzi.imho.domain.model.Post
 import me.arkadzi.imho.presentation.adapteres.BaseAdapter
@@ -14,7 +15,6 @@ import me.arkadzi.imho.presentation.views.PostView
 import javax.inject.Inject
 
 class PostsActivity : BaseActivity(), PostView {
-//    override val hasBackButton = true
     @Inject
     lateinit var presenter: PostPresenter
     private lateinit var adapter: BaseAdapter<Post>
@@ -35,6 +35,7 @@ class PostsActivity : BaseActivity(), PostView {
     private fun init() {
         rvPosts.layoutManager = LinearLayoutManager(this)
         adapter = PostsAdapter(layoutInflater)
+        adapter.setOnItemClickListener { navigateToDetails(it) }
         rvPosts.adapter = adapter
         ltRefresh.setOnRefreshListener { presenter.onRefresh() }
     }
