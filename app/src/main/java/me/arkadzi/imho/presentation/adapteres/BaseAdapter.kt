@@ -3,12 +3,13 @@ package me.arkadzi.imho.presentation.adapteres
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
-abstract class BaseAdapter<D>(private val inflater: LayoutInflater) : RecyclerView.Adapter<BaseHolder<D>>() {
+abstract class BaseAdapter<D>(protected val inflater: LayoutInflater) : RecyclerView.Adapter<BaseHolder<D>>() {
     var data = listOf<D>()
         set(value) {
             field = value.toMutableList()
             notifyDataSetChanged()
         }
+
     private var clickListener :(D) -> Unit = {}
 
     fun setOnItemClickListener(listener: (D) -> Unit) {

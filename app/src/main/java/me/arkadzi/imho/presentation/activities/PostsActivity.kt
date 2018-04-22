@@ -3,7 +3,7 @@ package me.arkadzi.imho.presentation.activities
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
-import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_posts.*
 import me.arkadzi.imho.R
 import me.arkadzi.imho.app.utils.navigateToDetails
 import me.arkadzi.imho.app.utils.toast
@@ -21,7 +21,7 @@ class PostsActivity : BaseActivity(), PostView {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_posts)
         activityComponent.inject(this)
         init()
         presenter.onCreate(this)
