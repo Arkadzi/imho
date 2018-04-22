@@ -3,7 +3,7 @@ package me.arkadzi.imho.domain.subscribers
 
 import android.util.Log
 
-class BaseProgressSubscriber<T>(private var listener: ProgressSubscriberListener?) : BaseUseCaseSubscriber<T>() {
+open class BaseProgressSubscriber<T>(private var listener: ProgressSubscriberListener?) : BaseUseCaseSubscriber<T>() {
 
     override fun onStart() {
         listener?.onStartLoading()

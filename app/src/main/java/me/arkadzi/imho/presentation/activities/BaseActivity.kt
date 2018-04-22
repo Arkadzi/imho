@@ -1,7 +1,5 @@
 package me.arkadzi.imho.presentation.activities
 
-import android.os.Bundle
-import android.support.v7.app.ActionBar
 import android.support.v7.app.AppCompatActivity
 import android.view.MenuItem
 
@@ -10,7 +8,7 @@ import me.arkadzi.imho.presentation.di.ActivityComponent
 import me.arkadzi.imho.presentation.di.ActivityModule
 
 abstract class BaseActivity : AppCompatActivity() {
-
+    protected open val hasBackButton = false
     protected val activityComponent: ActivityComponent by lazy {
         val configurationInstance = lastCustomNonConfigurationInstance
         if (configurationInstance == null)
@@ -26,17 +24,13 @@ abstract class BaseActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-        if (hasBackButton()) {
+        if (hasBackButton) {
             val supportActionBar = supportActionBar
             if (supportActionBar != null) {
                 supportActionBar.setDisplayHomeAsUpEnabled(true)
                 supportActionBar.setDisplayShowHomeEnabled(true)
             }
         }
-    }
-
-    protected fun hasBackButton(): Boolean {
-        return false
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

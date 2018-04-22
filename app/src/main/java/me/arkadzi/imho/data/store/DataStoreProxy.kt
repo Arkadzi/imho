@@ -7,6 +7,9 @@ import me.arkadzi.imho.domain.model.Post
 import me.arkadzi.imho.domain.model.User
 import retrofit2.HttpException
 import rx.Observable
+import java.net.ConnectException
+import java.net.SocketTimeoutException
+import java.net.UnknownHostException
 
 class DataStoreProxy constructor(restApi: RestApi, storage: LocalStorage) : DataStore {
     private val remoteDataStore: DataStore
@@ -29,5 +32,7 @@ class DataStoreProxy constructor(restApi: RestApi, storage: LocalStorage) : Data
 
 
     private fun alternate(it: Throwable?, observable: Observable<List<Post>>) =
-            if (it is HttpException) observable else Observable.error(it)
+            if (it is SocketTimeoutException
+                    || it is ConnectException
+                    || it is UnknownHostException) observable else Observable.error(it)
 }

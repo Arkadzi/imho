@@ -26,7 +26,6 @@ abstract class UseCase<T>(private val subscribeOn: SubscribeOn, private val obse
                     .observeOn(observeOn.scheduler())
                     .cache()
                     .doOnError { observable = null }
-                    .doOnCompleted { observable = null }
         subscription = observable!!.subscribe(subscriber)
     }
 

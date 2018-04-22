@@ -10,6 +10,7 @@ import me.arkadzi.imho.presentation.di.ActivityModule
 @Singleton
 @Component(modules = arrayOf(ApplicationModule::class))
 interface ApplicationComponent {
+
     operator fun plus(activityModule: ActivityModule): ActivityComponent
 
 }

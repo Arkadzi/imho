@@ -51,7 +51,7 @@ class DataModule {
     }
 
     @Provides
-    @ActivityScope
+    @Singleton
     fun provideRestApi(retrofit: Retrofit): RestApi {
         return RestApi(retrofit.create(RetrofitApi::class.java))
     }
@@ -59,19 +59,19 @@ class DataModule {
 
 
     @Provides
-    @ActivityScope
+    @Singleton
     fun provideLocalStorage(): LocalStorage {
         return RamStorage()
     }
 
     @Provides
-    @ActivityScope
+    @Singleton
     fun provideDataStore(restApi: RestApi, storage: LocalStorage): DataStore {
         return DataStoreProxy(restApi, storage)
     }
 
     @Provides
-    @ActivityScope
+    @Singleton
     fun provideRepository(dataStore: DataStore): Repository {
         return RepositoryImpl(dataStore)
     }
