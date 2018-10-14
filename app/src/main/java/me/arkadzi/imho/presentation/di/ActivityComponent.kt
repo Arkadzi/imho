@@ -1,14 +1,16 @@
 package me.arkadzi.imho.presentation.di
 
 import dagger.Subcomponent
-import me.arkadzi.imho.presentation.activities.PostDetailsActivity
-import me.arkadzi.imho.presentation.activities.PostsActivity
 import me.arkadzi.imho.presentation.di.scope.ActivityScope
+import me.arkadzi.imho.presentation.login.LoginActivity
+import me.arkadzi.imho.presentation.login.MainActivity
+import me.arkadzi.imho.presentation.splash.SplashActivity
 
 
 @ActivityScope
 @Subcomponent(modules = arrayOf(ActivityModule::class))
 interface ActivityComponent {
-    fun inject(postsActivity: PostsActivity)
-    fun inject(postsActivity: PostDetailsActivity)
+    fun inject(loginActivity: LoginActivity)
+    fun inject(splashActivity: SplashActivity)
+    fun inject(mainActivity: MainActivity)
 }

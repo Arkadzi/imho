@@ -3,13 +3,13 @@ package me.arkadzi.imho.app.di
 import android.content.Context
 import dagger.Module
 import dagger.Provides
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 import me.arkadzi.imho.app.Application
 import me.arkadzi.imho.app.utils.Messages
 import me.arkadzi.imho.data.di.DataModule
 import me.arkadzi.imho.domain.schedulers.ObserveOn
 import me.arkadzi.imho.domain.schedulers.SubscribeOn
-import rx.android.schedulers.AndroidSchedulers
-import rx.schedulers.Schedulers
 import javax.inject.Singleton
 
 @Module(includes = arrayOf(DataModule::class))

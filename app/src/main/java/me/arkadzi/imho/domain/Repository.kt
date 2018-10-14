@@ -1,13 +1,9 @@
 package me.arkadzi.imho.domain
 
-import me.arkadzi.imho.domain.model.Post
-import me.arkadzi.imho.domain.model.PostInfo
-import rx.Observable
+import io.reactivex.Single
+import me.arkadzi.imho.domain.model.User
 
 
 interface Repository {
-
-    fun getPosts(): Observable<List<Post>>
-
-    fun getPostInfo(post: Post): Observable<PostInfo>
+    fun login(login: String, password: String): Single<User>
 }

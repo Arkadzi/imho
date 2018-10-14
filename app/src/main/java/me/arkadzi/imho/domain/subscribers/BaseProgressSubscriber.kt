@@ -1,18 +1,12 @@
 package me.arkadzi.imho.domain.subscribers
 
-
 import android.util.Log
 
-open class BaseProgressSubscriber<T>(private var listener: ProgressSubscriberListener?) : BaseUseCaseSubscriber<T>() {
-
-    override fun onStart() {
-        listener?.onStartLoading()
-    }
-
-    override fun onCompleted() {
-        Log.e("useCase", "onComplete")
-        listener?.onCompleted()
-        listener = null
+open class BaseProgressSubscriber<T>(
+        private var listener: ProgressSubscriberListener?
+) : BaseUseCaseSubscriber<T> {
+    override fun onSuccess(value: T) {
+        Log.e("useCase", "onNext $value")
     }
 
     override fun onError(e: Throwable) {
@@ -21,8 +15,14 @@ open class BaseProgressSubscriber<T>(private var listener: ProgressSubscriberLis
         listener = null
     }
 
-    override fun onNext(response: T) {
-        Log.e("useCase", "onNext $response")
+    override fun onFinish() {
+        Log.e("useCase", "onComplete")
+        listener?.onCompleted()
+        listener = null
+    }
+
+    override fun onStart() {
+        listener?.onStartLoading()
     }
 
     interface ProgressSubscriberListener {

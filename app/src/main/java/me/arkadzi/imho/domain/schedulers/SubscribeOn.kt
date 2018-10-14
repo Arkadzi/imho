@@ -1,6 +1,7 @@
 package me.arkadzi.imho.domain.schedulers
 
-import rx.Scheduler
+import io.reactivex.Scheduler
+
 
 interface SubscribeOn {
     fun scheduler(): Scheduler

@@ -6,9 +6,9 @@ import me.arkadzi.imho.domain.model.*
 
 class Mappers {
     companion object {
-        val userMapper: Mapper<UserEntity, User> by lazy {
-            object : Mapper<UserEntity, User> {
-                override fun map(obj: UserEntity) = User(obj.id, obj.name, obj.username, obj.email, addressMapper.map(obj.address), obj.phone, obj.website, companyMapper.map(obj.company))
+        val userMapper: Mapper<UserEntity, User1> by lazy {
+            object : Mapper<UserEntity, User1> {
+                override fun map(obj: UserEntity) = User1(obj.id, obj.name, obj.username, obj.email, addressMapper.map(obj.address), obj.phone, obj.website, companyMapper.map(obj.company))
             }
         }
 

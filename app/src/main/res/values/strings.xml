@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">IMHO</string>
     <string name="err_network_connection">No internet. Please, check connection</string>
+    <string name="action_login">Log in</string>
+    <string name="hint_email">E-mail</string>
+    <string name="hint_password">Password</string>
 </resources>
