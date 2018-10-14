@@ -1,37 +1,34 @@
 package me.arkadzi.imho.presentation.base
 
-import android.annotation.SuppressLint
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.support.v7.app.AlertDialog
-import android.widget.Toast
 import me.arkadzi.imho.R
 import me.arkadzi.imho.presentation.presenters.Presenter
 import me.arkadzi.imho.presentation.views.ProgressView
 import me.arkadzi.imho.presentation.views.View
 import javax.inject.Inject
 
-@SuppressLint("Registered")
-abstract class BaseMvpActivity<V : View, P : Presenter<V>> : BaseActivity(), ProgressView {
+abstract class BaseMvpFragment<V : View, P : Presenter<V>> : BaseFragment(), ProgressView {
     @Inject
     lateinit var presenter: P
     private var progressDialog: AlertDialog? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    override fun onViewCreated(view: android.view.View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         presenter.onCreate(this as V)
     }
 
-    override fun onDestroy() {
+    override fun onDestroyView() {
         hideProgress()
         presenter.onRelease()
-        super.onDestroy()
+        super.onDestroyView()
     }
 
     override fun showProgress() {
-        val view = android.view.View.inflate(this, R.layout.dialog_progress, null)
-        progressDialog = AlertDialog.Builder(this)
+        val view = android.view.View.inflate(activity, R.layout.dialog_progress, null)
+        progressDialog = AlertDialog.Builder(activity!!)
                 .setView(view)
                 .setCancelable(false)
                 .create()
@@ -44,4 +41,6 @@ abstract class BaseMvpActivity<V : View, P : Presenter<V>> : BaseActivity(), Pro
     override fun hideProgress() {
         progressDialog?.dismiss()
     }
+
+
 }

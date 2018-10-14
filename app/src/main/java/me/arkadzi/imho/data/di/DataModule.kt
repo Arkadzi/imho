@@ -25,13 +25,24 @@ class DataModule {
 
     @Provides
     @Singleton
-    fun provideOkClient(context: Context): OkHttpClient {
+    fun provideOkClient(context: Context, account: Account): OkHttpClient {
         val interceptor = HttpLoggingInterceptor()
         interceptor.level = HttpLoggingInterceptor.Level.BODY
 
         return OkHttpClient.Builder()
                 .readTimeout(30, TimeUnit.SECONDS)
                 .addInterceptor(interceptor)
+                .addInterceptor {
+                    val token = account.getToken()
+                    val request = if (token != null) {
+                        it.request().newBuilder()
+                                .addHeader("Authorization", token)
+                                .build()
+                    } else {
+                        it.request()
+                    }
+                    return@addInterceptor it.proceed(request)
+                }
                 .build()
     }
 

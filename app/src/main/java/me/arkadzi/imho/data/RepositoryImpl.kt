@@ -4,6 +4,8 @@ import io.reactivex.Single
 import me.arkadzi.imho.data.rest.RestApi
 import me.arkadzi.imho.domain.Repository
 import me.arkadzi.imho.domain.model.Account
+import me.arkadzi.imho.domain.model.Lab
+import me.arkadzi.imho.domain.model.Lecturer
 import me.arkadzi.imho.domain.model.User
 
 class RepositoryImpl(
@@ -22,5 +24,13 @@ class RepositoryImpl(
                         }
                 )
                 .singleOrError()
+    }
+
+    override fun getLabs(): Single<List<Lab>> {
+        return restApi.getLabs()
+    }
+
+    override fun getLecturers(): Single<List<Lecturer>> {
+        return restApi.getLecturers()
     }
 }

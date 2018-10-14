@@ -2,6 +2,8 @@ package me.arkadzi.imho.data.rest
 
 import io.reactivex.Single
 import me.arkadzi.imho.domain.model.Credentials
+import me.arkadzi.imho.domain.model.Lab
+import me.arkadzi.imho.domain.model.Lecturer
 import me.arkadzi.imho.domain.model.User
 import okhttp3.ResponseBody
 import retrofit2.Response
@@ -16,4 +18,10 @@ interface RetrofitApi {
 
     @POST("login")
     fun login(@Body credentials: Credentials): Single<Response<ResponseBody>>
+
+    @GET("labs")
+    fun getLabs(): Single<List<Lab>>
+
+    @GET("lecturers")
+    fun getLecturers(): Single<List<Lecturer>>
 }

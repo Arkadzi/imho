@@ -2,6 +2,8 @@ package me.arkadzi.imho.data.rest
 
 import io.reactivex.Single
 import me.arkadzi.imho.domain.model.Credentials
+import me.arkadzi.imho.domain.model.Lab
+import me.arkadzi.imho.domain.model.Lecturer
 import me.arkadzi.imho.domain.model.User
 
 
@@ -13,5 +15,13 @@ class RestApi(private val api: RetrofitApi) {
 
     fun getSelf(token: String): Single<User> {
         return api.getSelf(token)
+    }
+
+    fun getLabs(): Single<List<Lab>> {
+        return api.getLabs()
+    }
+
+    fun getLecturers(): Single<List<Lecturer>> {
+        return api.getLecturers()
     }
 }

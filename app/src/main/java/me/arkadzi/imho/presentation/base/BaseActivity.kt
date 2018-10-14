@@ -3,14 +3,16 @@ package me.arkadzi.imho.presentation.base
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.MenuItem
+import android.widget.Toast
 
 import me.arkadzi.imho.app.Application
 import me.arkadzi.imho.app.utils.applicationComponent
 import me.arkadzi.imho.app.utils.trySetContentView
 import me.arkadzi.imho.presentation.di.ActivityComponent
 import me.arkadzi.imho.presentation.di.ActivityModule
+import me.arkadzi.imho.presentation.views.View
 
-abstract class BaseActivity : AppCompatActivity() {
+abstract class BaseActivity : AppCompatActivity(), View {
     protected open val hasBackButton = false
     abstract val contentViewId: Int?
     protected val activityComponent: ActivityComponent by lazy {
@@ -25,6 +27,10 @@ abstract class BaseActivity : AppCompatActivity() {
         return activityComponent
     }
 
+
+    override fun showMessage(message: String) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

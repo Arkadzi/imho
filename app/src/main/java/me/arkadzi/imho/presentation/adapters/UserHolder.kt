@@ -1,4 +1,4 @@
-package me.arkadzi.imho.presentation.adapteres
+package me.arkadzi.imho.presentation.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

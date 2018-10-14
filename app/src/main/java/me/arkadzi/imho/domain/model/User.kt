@@ -1,5 +1,6 @@
 package me.arkadzi.imho.domain.model
-data class User(val id: Long,
+
+open class User(val id: Long,
                 var email: String,
                 var password: String,
                 var firstName: String,

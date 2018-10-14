@@ -1,4 +1,4 @@
-package me.arkadzi.imho.presentation.adapteres
+package me.arkadzi.imho.presentation.adapters
 
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
