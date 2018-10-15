@@ -1,21 +1,23 @@
 package me.arkadzi.imho.domain.usecase
 
 import me.arkadzi.imho.domain.Repository
-import me.arkadzi.imho.domain.model.Lecturer
+import me.arkadzi.imho.domain.model.LabPriority
 import me.arkadzi.imho.domain.schedulers.ObserveOn
 import me.arkadzi.imho.domain.schedulers.SubscribeOn
 import javax.inject.Inject
+import kotlin.properties.Delegates
 
 
-class LecturersUseCase @Inject constructor(
+class LabPrioritiesUseCase @Inject constructor(
         subscribeOn: SubscribeOn,
         observeOn: ObserveOn,
         private val repository: Repository
-) : ListUseCase<Lecturer>(subscribeOn, observeOn) {
-    var labId: Long? = null
+) : ListUseCase<LabPriority>(subscribeOn, observeOn) {
+    private var labId: Long by Delegates.notNull()
 
-    fun setData(labId: Long?) {
+    fun setData(labId: Long) {
         this.labId = labId
     }
-    override fun useCaseObservable() = repository.getLecturers(labId)
+
+    override fun useCaseObservable() = repository.getLabPriorities(labId)
 }

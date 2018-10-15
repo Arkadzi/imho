@@ -5,14 +5,14 @@ import me.arkadzi.imho.domain.subscribers.BaseProgressSubscriber
 import me.arkadzi.imho.domain.usecase.ListUseCase
 import me.arkadzi.imho.presentation.views.BaseListView
 
-open class BaseListPresenter<D, V : BaseListView<D>>(
+abstract class BaseListPresenter<D, V : BaseListView<D>>(
         messages: Messages,
-        val listUseCase: ListUseCase<D>
+        open val listUseCase: ListUseCase<D>
 ) : ProgressPresenter<V>(messages) {
 
     override fun onCreate(view: V) {
         super.onCreate(view)
-        initUseCase()
+        initUseCase(view)
         listUseCase.execute(getSubscriber())
     }
 
@@ -20,7 +20,8 @@ open class BaseListPresenter<D, V : BaseListView<D>>(
         listUseCase.stopExecution()
         super.onRelease()
     }
-    private fun initUseCase() {
+
+    protected open fun initUseCase(view: V) {
 
     }
 

@@ -5,9 +5,7 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.support.v7.app.AlertDialog
-import android.widget.Toast
 import me.arkadzi.imho.R
-import me.arkadzi.imho.presentation.presenters.Presenter
 import me.arkadzi.imho.presentation.views.ProgressView
 import me.arkadzi.imho.presentation.views.View
 import javax.inject.Inject

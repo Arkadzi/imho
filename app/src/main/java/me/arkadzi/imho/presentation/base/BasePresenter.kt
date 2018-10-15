@@ -2,7 +2,6 @@ package me.arkadzi.imho.presentation.base
 
 
 import me.arkadzi.imho.app.utils.Messages
-import me.arkadzi.imho.presentation.presenters.Presenter
 import me.arkadzi.imho.presentation.views.View
 
 

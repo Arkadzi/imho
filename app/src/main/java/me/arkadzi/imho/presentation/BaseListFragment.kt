@@ -22,7 +22,14 @@ abstract class BaseListFragment<D, V : BaseListView<D>, P : BaseListPresenter<D,
         super.onViewCreated(view, savedInstanceState)
         recyclerView.layoutManager = LinearLayoutManager(activity)
         adapter = generateAdapter()
+        adapter.setOnItemClickListener {
+            onItemClick(it)
+        }
         recyclerView.adapter = adapter
+    }
+
+    protected open fun onItemClick(item: D) {
+
     }
 
     override fun showProgress() {

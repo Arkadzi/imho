@@ -1,16 +1,10 @@
 package me.arkadzi.imho.data.rest
 
 import io.reactivex.Single
-import me.arkadzi.imho.domain.model.Credentials
-import me.arkadzi.imho.domain.model.Lab
-import me.arkadzi.imho.domain.model.Lecturer
-import me.arkadzi.imho.domain.model.User
+import me.arkadzi.imho.domain.model.*
 import okhttp3.ResponseBody
 import retrofit2.Response
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.Header
-import retrofit2.http.POST
+import retrofit2.http.*
 
 interface RetrofitApi {
     @GET("users/self")
@@ -24,4 +18,10 @@ interface RetrofitApi {
 
     @GET("lecturers")
     fun getLecturers(): Single<List<Lecturer>>
+
+    @GET("labs/{labId}/priorities")
+    fun getLabPriorities(@Path("labId") labId: Long): Single<List<LabPriority>>
+
+    @GET("labs/{labId}/lecturers")
+    fun getLecturersByLab(@Path("labId") labId: Long): Single<List<Lecturer>>
 }

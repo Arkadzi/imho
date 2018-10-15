@@ -5,6 +5,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 import me.arkadzi.imho.R
 import me.arkadzi.imho.app.utils.Launcher
 import me.arkadzi.imho.presentation.base.BaseActivity
+import me.arkadzi.imho.presentation.base.TabAdapters
 
 class MainActivity: BaseActivity() {
     override val contentViewId = R.layout.activity_main
@@ -16,7 +17,7 @@ class MainActivity: BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         button.setOnClickListener {
-            Launcher.startLabLectScreen(this)
+            Launcher.startTabScreen(this, TabAdapters.LABS_LECTURERS)
         }
     }
 }

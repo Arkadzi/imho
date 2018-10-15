@@ -2,7 +2,10 @@ package me.arkadzi.imho.presentation.adapters
 
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import me.arkadzi.imho.presentation.BaseListFragment
+
 abstract class BaseAdapter<D>(protected val inflater: LayoutInflater) : RecyclerView.Adapter<BaseHolder<D>>() {
     var data = listOf<D>()
         set(value) {

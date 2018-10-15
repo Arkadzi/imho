@@ -49,7 +49,7 @@ class TabBarActivity : BaseActivity() {
 
     companion object {
         const val ARG_TAB_MODE = "arg_tab_mode"
-        const val ARG_ADDITIONAL_ARGS = "rg_additional_args"
+        const val ARG_ADDITIONAL_ARGS = "arg_additional_args"
     }
 
 }

@@ -1,4 +1,4 @@
-package me.arkadzi.imho.presentation.presenters
+package me.arkadzi.imho.presentation.base
 
 import me.arkadzi.imho.presentation.views.View
 

@@ -3,10 +3,7 @@ package me.arkadzi.imho.data
 import io.reactivex.Single
 import me.arkadzi.imho.data.rest.RestApi
 import me.arkadzi.imho.domain.Repository
-import me.arkadzi.imho.domain.model.Account
-import me.arkadzi.imho.domain.model.Lab
-import me.arkadzi.imho.domain.model.Lecturer
-import me.arkadzi.imho.domain.model.User
+import me.arkadzi.imho.domain.model.*
 
 class RepositoryImpl(
         private val restApi: RestApi,
@@ -30,7 +27,11 @@ class RepositoryImpl(
         return restApi.getLabs()
     }
 
-    override fun getLecturers(): Single<List<Lecturer>> {
-        return restApi.getLecturers()
+    override fun getLecturers(labId: Long?): Single<List<Lecturer>> {
+        return restApi.getLecturers(labId)
+    }
+
+    override fun getLabPriorities(labId: Long): Single<List<LabPriority>> {
+        return restApi.getLabPriorities(labId)
     }
 }
