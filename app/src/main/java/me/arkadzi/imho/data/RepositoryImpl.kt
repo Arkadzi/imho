@@ -31,6 +31,10 @@ class RepositoryImpl(
         return restApi.getLecturers(labId)
     }
 
+    override fun getGraduateWorks(userId: Long, owner: Boolean): Single<List<GraduateWork>> {
+        return Single.just(listOf())
+    }
+
     override fun getLabPriorities(labId: Long): Single<List<LabPriority>> {
         return restApi.getLabPriorities(labId)
     }

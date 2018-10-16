@@ -19,9 +19,9 @@ interface RetrofitApi {
     @GET("lecturers")
     fun getLecturers(): Single<List<Lecturer>>
 
-    @GET("labs/{labId}/priorities")
-    fun getLabPriorities(@Path("labId") labId: Long): Single<List<LabPriority>>
+    @GET("labs/{userId}/priorities")
+    fun getLabPriorities(@Path("userId") labId: Long): Single<List<LabPriority>>
 
-    @GET("labs/{labId}/lecturers")
-    fun getLecturersByLab(@Path("labId") labId: Long): Single<List<Lecturer>>
+    @GET("labs/{userId}/lecturers")
+    fun getLecturersByLab(@Path("userId") labId: Long): Single<List<Lecturer>>
 }

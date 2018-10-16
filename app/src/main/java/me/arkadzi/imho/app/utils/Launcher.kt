@@ -4,7 +4,7 @@ import android.app.Activity
 import android.content.Intent
 import me.arkadzi.imho.presentation.base.TabBarActivity
 import me.arkadzi.imho.presentation.login.LoginActivity
-import me.arkadzi.imho.presentation.login.MainActivity
+import me.arkadzi.imho.presentation.profile.MainActivity
 
 object Launcher {
     fun startLoginScreen(activity: Activity) {

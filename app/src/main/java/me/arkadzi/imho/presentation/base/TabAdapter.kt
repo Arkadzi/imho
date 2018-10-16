@@ -3,12 +3,14 @@ package me.arkadzi.imho.presentation.base
 import android.support.annotation.StringRes
 import me.arkadzi.imho.R
 import me.arkadzi.imho.domain.model.Lab
+import me.arkadzi.imho.domain.model.User
 import me.arkadzi.imho.presentation.lab_content.LabPriorityFragment
 import me.arkadzi.imho.presentation.labs.LaboratoriesFragment
 import me.arkadzi.imho.presentation.lecturers.LecturersFragment
+import me.arkadzi.imho.presentation.profile.DiplomaListFragment
 
 class TabAdapters(
-        val activity: TabBarActivity
+        val activity: BaseActivity
 ) {
     companion object {
         const val LABS_LECTURERS = "LABS_LECTURERS"
@@ -32,11 +34,11 @@ interface TabAdapter {
 }
 
 abstract class FragmentTabAdapter(
-        private val tabBarActivity: TabBarActivity
+        private val activity: BaseActivity
 ) : TabAdapter {
 
     override fun showView(position: Int, params: Array<Any>) {
-        tabBarActivity.supportFragmentManager.beginTransaction()
+        activity.supportFragmentManager.beginTransaction()
                 .replace(R.id.flContainer, generateFragment(position, params))
                 .commit()
     }
@@ -44,7 +46,7 @@ abstract class FragmentTabAdapter(
     abstract fun generateFragment(position: Int, params: Array<Any>): BaseFragment
 }
 
-class LabsLecturersAdapter(tabBarActivity: TabBarActivity) : FragmentTabAdapter(tabBarActivity) {
+class LabsLecturersAdapter(baseActivity: BaseActivity) : FragmentTabAdapter(baseActivity) {
     override fun getTabTitle(position: Int) = when (position) {
         0 -> R.string.hint_labs
         1 -> R.string.hint_lecturers
@@ -56,13 +58,13 @@ class LabsLecturersAdapter(tabBarActivity: TabBarActivity) : FragmentTabAdapter(
     override fun generateFragment(position: Int, params: Array<Any>): BaseFragment {
         return when (position) {
             0 -> LaboratoriesFragment.getInstance()
-            1 -> LecturersFragment.getInstance(null)
+            1 -> LecturersFragment.getInstance()
             else -> throw IllegalArgumentException("LabsLecturersAdapter generateFragment position:$position")
         }
     }
 }
 
-class LabContentAdapter(tabBarActivity: TabBarActivity) : FragmentTabAdapter(tabBarActivity) {
+class LabContentAdapter(baseActivity: BaseActivity) : FragmentTabAdapter(baseActivity) {
     override fun getTabTitle(position: Int) = when (position) {
         0 -> R.string.hint_priorities
         1 -> R.string.hint_lecturers
@@ -79,7 +81,25 @@ class LabContentAdapter(tabBarActivity: TabBarActivity) : FragmentTabAdapter(tab
             else -> throw IllegalArgumentException("LabContentAdapter generateFragment position:$position")
         }
     }
+}
 
+class DiplomasAdapter(baseActivity: BaseActivity) : FragmentTabAdapter(baseActivity) {
+    override fun getTabTitle(position: Int) = when (position) {
+        0 -> R.string.hint_own
+        1 -> R.string.hint_offered
+        else -> throw IllegalArgumentException("DiplomasAdapter getTabTitle position:$position")
+    }
+
+    override fun getCount() = 2
+
+    override fun generateFragment(position: Int, params: Array<Any>): BaseFragment {
+        val user = params[0] as User
+        return when (position) {
+            0 -> DiplomaListFragment.getInstance(user.id, true)
+            1 -> DiplomaListFragment.getInstance(user.id, false)
+            else -> throw IllegalArgumentException("DiplomasAdapter generateFragment position:$position")
+        }
+    }
 }
 
 

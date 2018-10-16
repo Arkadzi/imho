@@ -21,7 +21,7 @@ class LecturersFragment : BaseListFragment<Lecturer, LabContentView<Lecturer>, L
 
     companion object {
         const val ARG_LAB = "arg_lab"
-        fun getInstance(lab: Lab?): LecturersFragment {
+        fun getInstance(lab: Lab? = null): LecturersFragment {
             return LecturersFragment().apply {
                 arguments = Bundle().apply {
                     putSerializable(ARG_LAB, lab)

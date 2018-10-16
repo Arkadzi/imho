@@ -21,7 +21,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".presentation.login.MainActivity" />
+        <activity android:name=".presentation.profile.MainActivity" />
         <activity android:name=".presentation.base.TabBarActivity" />
     </application>
 

@@ -7,4 +7,6 @@
     <string name="hint_labs">Laboratories</string>
     <string name="hint_lecturers">Lecturers</string>
     <string name="hint_priorities">Priorities</string>
+    <string name="hint_own">Own</string>
+    <string name="hint_offered">Offered</string>
 </resources>
