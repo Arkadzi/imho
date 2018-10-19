@@ -16,13 +16,8 @@ class LoginActivity : BaseMvpActivity<LoginView, LoginPresenter>(), LoginView {
         activityComponent.inject(this)
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        initViews()
-    }
-
     @SuppressLint("CheckResult")
-    private fun initViews() {
+    override fun initViews() {
         RxView.clicks(btLogin)
                 .subscribe {
                     presenter.onLogin(etLogin.textStr, etPassword.textStr)

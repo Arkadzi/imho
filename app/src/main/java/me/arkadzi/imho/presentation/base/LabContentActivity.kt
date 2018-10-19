@@ -4,24 +4,26 @@ import android.os.Bundle
 import android.support.design.widget.TabLayout
 import kotlinx.android.synthetic.main.activity_tab.*
 import me.arkadzi.imho.R
+import me.arkadzi.imho.domain.model.Lab
 
-class TabBarActivity : BaseActivity() {
+class LabContentActivity : BaseActivity() {
     override val contentViewId = R.layout.activity_tab
-    val tabMode
-        get() = intent.getStringExtra(ARG_TAB_MODE)
-    val additionalArgs
-        get() = (intent.getSerializableExtra(ARG_ADDITIONAL_ARGS) as? Array<Any>) ?: arrayOf()
+    override val hasBackButton = true
+    val lab
+        get() = (intent.getSerializableExtra(ARG_ADDITIONAL_ARGS) as Lab)
 
     val fragmentTabAdapter: FragmentTabAdapter by lazy {
-        TabAdapters(this)[tabMode]
+        TabAdapters(this)[TabAdapters.LAB_CONTENT]
     }
+
+    override fun provideTitle() = lab.title
 
     override fun injectSelf() {
         activityComponent.inject(this)
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    override fun initViews() {
+        setSupportActionBar(toolbar)
         (0..fragmentTabAdapter.getCount() - 1).map {
             tabView.newTab().apply {
                 this.text = getString(fragmentTabAdapter.getTabTitle(it))
@@ -44,7 +46,7 @@ class TabBarActivity : BaseActivity() {
     }
 
     private fun showScreen(position: Int) {
-        fragmentTabAdapter.showView(position, additionalArgs)
+        fragmentTabAdapter.showView(position, arrayOf(lab))
     }
 
     companion object {

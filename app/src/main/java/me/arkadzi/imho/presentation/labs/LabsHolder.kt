@@ -11,7 +11,7 @@ import me.arkadzi.imho.presentation.adapters.BaseHolder
 class LabsHolder(
         inflater: LayoutInflater,
         parent: ViewGroup
-) : BaseHolder<Lab>(inflater.inflate(R.layout.item_post, parent, false)),
+) : BaseHolder<Lab>(inflater.inflate(R.layout.item_lab, parent, false)),
         LayoutContainer {
 
     override fun bind(data: Lab) {

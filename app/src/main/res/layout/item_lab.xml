@@ -2,8 +2,11 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:minHeight="56dp"
     android:layout_height="wrap_content"
     android:orientation="vertical"
+    android:background="?selectableItemBackground"
+    android:gravity="center_vertical"
     android:paddingLeft="@dimen/padding_list_horizontal"
     android:paddingTop="@dimen/padding_list_vertical"
     android:paddingRight="@dimen/padding_list_horizontal"
@@ -14,15 +17,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ellipsize="end"
-        android:maxLines="2"
-        android:textAppearance="@style/TextAppearance.AppCompat.Title"
+        android:maxLines="3"
         android:textColor="?android:attr/textColorPrimary"
         tools:text="lorem ipsum" />
 
-    <TextView
-        android:id="@+id/tvDescription"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        tools:text="lorem ipsum" />
 </LinearLayout>

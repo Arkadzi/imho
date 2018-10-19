@@ -2,6 +2,7 @@ package me.arkadzi.imho.presentation.base
 
 import android.support.annotation.StringRes
 import me.arkadzi.imho.R
+import me.arkadzi.imho.app.utils.showFragment
 import me.arkadzi.imho.domain.model.Lab
 import me.arkadzi.imho.domain.model.User
 import me.arkadzi.imho.presentation.lab_content.LabPriorityFragment
@@ -38,9 +39,7 @@ abstract class FragmentTabAdapter(
 ) : TabAdapter {
 
     override fun showView(position: Int, params: Array<Any>) {
-        activity.supportFragmentManager.beginTransaction()
-                .replace(R.id.flContainer, generateFragment(position, params))
-                .commit()
+        activity.showFragment(generateFragment(position, params))
     }
 
     abstract fun generateFragment(position: Int, params: Array<Any>): BaseFragment

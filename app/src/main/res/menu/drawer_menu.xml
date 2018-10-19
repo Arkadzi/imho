@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    android:theme="@style/ThemeOverlay.AppCompat.Light">
+
+    <group
+        android:id="@+id/group_1"
+        android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/it_labs"
+            android:checked="false"
+            android:icon="@drawable/ic_lab"
+            android:title="@string/hint_labs" />
+        <item
+            android:id="@+id/it_lecturers"
+            android:checked="false"
+            android:icon="@drawable/ic_person"
+            android:title="@string/hint_lecturers" />
+    </group>
+
+    <group
+        android:id="@+id/group_2"
+        android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/it_logout"
+            android:checked="false"
+            android:title="@string/action_logout" />
+    </group>
+
+</menu>

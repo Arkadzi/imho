@@ -26,6 +26,6 @@ class LaboratoriesFragment : BaseListFragment<Lab, BaseListView<Lab>, Laboratori
     }
 
     override fun onItemClick(item: Lab) {
-        Launcher.startTabScreen(activity!!, TabAdapters.LAB_CONTENT, item)
+        Launcher.startLabContentScreen(activity!!, item)
     }
 }

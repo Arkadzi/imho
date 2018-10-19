@@ -36,7 +36,15 @@ abstract class BaseActivity : AppCompatActivity(), View {
         super.onCreate(savedInstanceState)
         trySetContentView(contentViewId)
         injectSelf()
+        initViews()
+        supportActionBar?.title = provideTitle()
     }
+
+    protected open fun initViews() {
+
+    }
+
+    protected open fun provideTitle(): CharSequence? = null
 
     abstract fun injectSelf()
 

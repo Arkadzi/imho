@@ -12,7 +12,7 @@ import me.arkadzi.imho.presentation.adapters.BaseHolder
 class LabPriorityHolder(
         inflater: LayoutInflater,
         parent: ViewGroup
-) : BaseHolder<LabPriority>(inflater.inflate(R.layout.item_post, parent, false)),
+) : BaseHolder<LabPriority>(inflater.inflate(R.layout.item_lab, parent, false)),
         LayoutContainer {
 
     override fun bind(data: LabPriority) {

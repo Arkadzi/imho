@@ -2,7 +2,6 @@ package me.arkadzi.imho.presentation.profile
 
 import android.os.Bundle
 import android.support.design.widget.TabLayout
-import kotlinx.android.synthetic.main.activity_tab.*
 import me.arkadzi.imho.R
 import me.arkadzi.imho.domain.model.Account
 import me.arkadzi.imho.domain.model.User
@@ -11,6 +10,15 @@ import me.arkadzi.imho.presentation.base.DiplomasAdapter
 import me.arkadzi.imho.presentation.base.FragmentTabAdapter
 import me.arkadzi.imho.presentation.views.ProfileView
 import javax.inject.Inject
+import android.R.attr.fragment
+import android.support.design.widget.NavigationView
+import android.support.v4.view.GravityCompat
+import android.support.v7.app.ActionBarDrawerToggle
+import android.support.v7.widget.Toolbar
+import android.view.MenuItem
+import kotlinx.android.synthetic.main.activity_profile.*
+import me.arkadzi.imho.app.utils.Launcher
+
 
 class MainActivity : BaseMvpActivity<ProfileView, ProfilePresenter>(), ProfileView {
     override val contentViewId = R.layout.activity_profile
@@ -21,6 +29,8 @@ class MainActivity : BaseMvpActivity<ProfileView, ProfilePresenter>(), ProfileVi
         DiplomasAdapter(this)
     }
 
+    override fun provideTitle(): CharSequence = getString(R.string.hint_profile)
+
     override fun renderUser(user: User) {
 
     }
@@ -29,8 +39,13 @@ class MainActivity : BaseMvpActivity<ProfileView, ProfilePresenter>(), ProfileVi
         activityComponent.inject(this)
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    override fun initViews() {
+        setSupportActionBar(toolbar)
+        prepareDrawer()
+        prepareTabs()
+    }
+
+    private fun prepareTabs() {
         (0..fragmentTabAdapter.getCount() - 1).map {
             tabView.newTab().apply {
                 this.text = getString(fragmentTabAdapter.getTabTitle(it))
@@ -56,5 +71,21 @@ class MainActivity : BaseMvpActivity<ProfileView, ProfilePresenter>(), ProfileVi
         fragmentTabAdapter.showView(position, arrayOf(account.getUser()!!))
     }
 
-    private fun isOwner(position: Int) = position == 0
+    private fun prepareDrawer() {
+        navigationView.setNavigationItemSelectedListener(object : NavigationView.OnNavigationItemSelectedListener {
+            override fun onNavigationItemSelected(menuItem: MenuItem): Boolean {
+                drawer.closeDrawer(navigationView)
+                when (menuItem.itemId) {
+                    R.id.it_labs -> Launcher.startLabsActivity(this@MainActivity)
+                    R.id.it_lecturers -> Launcher.startLecturersActivity(this@MainActivity)
+                }
+                return false
+            }
+        })
+
+        val actionBarDrawerToggle = object : ActionBarDrawerToggle(
+                this, drawer, toolbar, 0, 0){}
+        drawer.addDrawerListener(actionBarDrawerToggle)
+        actionBarDrawerToggle.syncState()
+    }
 }
