@@ -5,10 +5,9 @@ import me.arkadzi.imho.domain.model.Lab
 import me.arkadzi.imho.domain.model.LabPriority
 import me.arkadzi.imho.presentation.BaseListFragment
 import me.arkadzi.imho.presentation.adapters.BaseAdapter
-import me.arkadzi.imho.presentation.views.BaseListView
 import me.arkadzi.imho.presentation.views.LabContentView
 
-class LabPriorityFragment : BaseListFragment<LabPriority, LabContentView<LabPriority>, LabPriorityPresenter>(), LabContentView<LabPriority> {
+class LabPrioritiesFragment : BaseListFragment<LabPriority, LabContentView<LabPriority>, LabPriorityPresenter>(), LabContentView<LabPriority> {
     override val labId: Long
         get() = (arguments!!.getSerializable(ARG_LAB) as Lab).id
 
@@ -22,8 +21,8 @@ class LabPriorityFragment : BaseListFragment<LabPriority, LabContentView<LabPrio
 
     companion object {
         const val ARG_LAB = "arg_lab"
-        fun getInstance(lab: Lab): LabPriorityFragment {
-            return LabPriorityFragment().apply {
+        fun getInstance(lab: Lab): LabPrioritiesFragment {
+            return LabPrioritiesFragment().apply {
                 arguments = Bundle().apply {
                     putSerializable(ARG_LAB, lab)
                 }

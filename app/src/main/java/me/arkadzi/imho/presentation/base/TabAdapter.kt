@@ -5,7 +5,7 @@ import me.arkadzi.imho.R
 import me.arkadzi.imho.app.utils.showFragment
 import me.arkadzi.imho.domain.model.Lab
 import me.arkadzi.imho.domain.model.User
-import me.arkadzi.imho.presentation.lab_content.LabPriorityFragment
+import me.arkadzi.imho.presentation.lab_content.LabPrioritiesFragment
 import me.arkadzi.imho.presentation.labs.LaboratoriesFragment
 import me.arkadzi.imho.presentation.lecturers.LecturersFragment
 import me.arkadzi.imho.presentation.profile.DiplomaListFragment
@@ -75,7 +75,7 @@ class LabContentAdapter(baseActivity: BaseActivity) : FragmentTabAdapter(baseAct
     override fun generateFragment(position: Int, params: Array<Any>): BaseFragment {
         val lab = params[0] as Lab
         return when (position) {
-            0 -> LabPriorityFragment.getInstance(lab)
+            0 -> LabPrioritiesFragment.getInstance(lab)
             1 -> LecturersFragment.getInstance(lab)
             else -> throw IllegalArgumentException("LabContentAdapter generateFragment position:$position")
         }
