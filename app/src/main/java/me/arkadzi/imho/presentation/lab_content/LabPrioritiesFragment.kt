@@ -1,6 +1,7 @@
 package me.arkadzi.imho.presentation.lab_content
 
 import android.os.Bundle
+import me.arkadzi.imho.app.utils.Launcher
 import me.arkadzi.imho.domain.model.Lab
 import me.arkadzi.imho.domain.model.LabPriority
 import me.arkadzi.imho.presentation.BaseListFragment
@@ -17,6 +18,10 @@ class LabPrioritiesFragment : BaseListFragment<LabPriority, LabContentView<LabPr
 
     override fun injectSelf() {
         activityComponent.inject(this)
+    }
+
+    override fun onItemClick(item: LabPriority) {
+        Launcher.startLabPriorityActivity(activity!!, item)
     }
 
     companion object {

@@ -29,6 +29,7 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".presentation.labs.LabsActivity" />
         <activity android:name=".presentation.labs.LecturersActivity" />
+        <activity android:name=".presentation.lab_content.LabPriorityActivity" />
     </application>
 
 </manifest>

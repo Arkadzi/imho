@@ -3,8 +3,10 @@ package me.arkadzi.imho.app.utils
 import android.app.Activity
 import android.content.Intent
 import me.arkadzi.imho.domain.model.Lab
+import me.arkadzi.imho.domain.model.LabPriority
 import me.arkadzi.imho.domain.model.User
 import me.arkadzi.imho.presentation.base.LabContentActivity
+import me.arkadzi.imho.presentation.lab_content.LabPriorityActivity
 import me.arkadzi.imho.presentation.labs.LabsActivity
 import me.arkadzi.imho.presentation.labs.LecturersActivity
 import me.arkadzi.imho.presentation.login.LoginActivity
@@ -31,5 +33,11 @@ object Launcher {
 
     fun startLecturersActivity(activity: Activity) {
         activity.startActivity(Intent(activity, LecturersActivity::class.java))
+    }
+
+    fun startLabPriorityActivity(activity: Activity, labPriority: LabPriority) {
+        activity.startActivity(Intent(activity, LabPriorityActivity::class.java).apply {
+            putExtra(LabPriorityActivity.ARG_LAB_PRIORITY, labPriority)
+        })
     }
 }

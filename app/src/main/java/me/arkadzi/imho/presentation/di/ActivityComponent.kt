@@ -4,6 +4,7 @@ import dagger.Subcomponent
 import me.arkadzi.imho.presentation.base.LabContentActivity
 import me.arkadzi.imho.presentation.di.scope.ActivityScope
 import me.arkadzi.imho.presentation.lab_content.LabPrioritiesFragment
+import me.arkadzi.imho.presentation.lab_content.LabPriorityActivity
 import me.arkadzi.imho.presentation.labs.LaboratoriesFragment
 import me.arkadzi.imho.presentation.labs.LabsActivity
 import me.arkadzi.imho.presentation.labs.LecturersActivity
@@ -27,4 +28,5 @@ interface ActivityComponent {
     fun inject(diplomaListFragment: DiplomaListFragment)
     fun inject(labsActivity: LabsActivity)
     fun inject(lecturersActivity: LecturersActivity)
+    fun inject(labPriorityActivity: LabPriorityActivity)
 }

@@ -50,7 +50,6 @@ class LabContentActivity : BaseActivity() {
     }
 
     companion object {
-        const val ARG_TAB_MODE = "arg_tab_mode"
         const val ARG_ADDITIONAL_ARGS = "arg_additional_args"
     }
 
