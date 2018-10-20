@@ -2,6 +2,8 @@ package me.arkadzi.imho.data.rest
 
 import io.reactivex.Single
 import me.arkadzi.imho.domain.model.*
+import retrofit2.http.GET
+import retrofit2.http.Query
 
 
 class RestApi(private val api: RetrofitApi) {
@@ -28,5 +30,13 @@ class RestApi(private val api: RetrofitApi) {
 
     fun getLabPriorities(labId: Long): Single<List<LabPriority>> {
         return api.getLabPriorities(labId)
+    }
+
+    fun getOwnGraduateWorks(userId: Long): Single<List<GraduateWork>> {
+        return api.getOwnGraduateWorks(userId)
+    }
+
+    fun getOfferedGraduateWorks(userId: Long): Single<List<GraduateWork>> {
+        return api.getOfferedGraduateWorks(userId)
     }
 }

@@ -2,13 +2,12 @@ package me.arkadzi.imho.presentation.lecturers
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import com.squareup.picasso.Picasso
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.item_lecturer.*
 import me.arkadzi.imho.R
+import me.arkadzi.imho.app.utils.setImageUrl
 import me.arkadzi.imho.domain.model.Lecturer
 import me.arkadzi.imho.presentation.adapters.BaseHolder
-import me.arkadzi.imho.presentation.utils.CircleTransform
 
 class LecturersHolder(
         inflater: LayoutInflater,
@@ -19,9 +18,7 @@ class LecturersHolder(
     override fun bind(data: Lecturer) {
         tvName.text = data.fullName
         tvGrade.text = data.grade
-        Picasso.get().load(data.avatar)
-                .transform(CircleTransform())
-                .into(ivAvatar)
+        ivAvatar.setImageUrl(data.avatar, round = true)
     }
 
     val Lecturer.fullName

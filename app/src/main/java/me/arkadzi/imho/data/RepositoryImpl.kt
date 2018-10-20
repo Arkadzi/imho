@@ -32,10 +32,15 @@ class RepositoryImpl(
     }
 
     override fun getGraduateWorks(userId: Long, owner: Boolean): Single<List<GraduateWork>> {
-        return Single.just(listOf())
+        return if (owner) {
+            restApi.getOwnGraduateWorks(userId)
+        } else {
+            restApi.getOfferedGraduateWorks(userId)
+        }
     }
 
     override fun getLabPriorities(labId: Long): Single<List<LabPriority>> {
         return restApi.getLabPriorities(labId)
     }
+
 }

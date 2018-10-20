@@ -1,6 +1,5 @@
 package me.arkadzi.imho.presentation.profile
 
-import android.os.Bundle
 import android.support.design.widget.TabLayout
 import me.arkadzi.imho.R
 import me.arkadzi.imho.domain.model.Account
@@ -10,14 +9,15 @@ import me.arkadzi.imho.presentation.base.DiplomasAdapter
 import me.arkadzi.imho.presentation.base.FragmentTabAdapter
 import me.arkadzi.imho.presentation.views.ProfileView
 import javax.inject.Inject
-import android.R.attr.fragment
 import android.support.design.widget.NavigationView
-import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
-import android.support.v7.widget.Toolbar
 import android.view.MenuItem
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_profile.*
 import me.arkadzi.imho.app.utils.Launcher
+import me.arkadzi.imho.app.utils.fullName
+import me.arkadzi.imho.app.utils.grade
+import me.arkadzi.imho.app.utils.setImageUrl
 
 
 class MainActivity : BaseMvpActivity<ProfileView, ProfilePresenter>(), ProfileView {
@@ -32,7 +32,9 @@ class MainActivity : BaseMvpActivity<ProfileView, ProfilePresenter>(), ProfileVi
     override fun provideTitle(): CharSequence = getString(R.string.hint_profile)
 
     override fun renderUser(user: User) {
-
+        tvName.text = user.fullName
+        tvGrade.text = user.grade
+        ivAvatar.setImageUrl(user.avatar, round = true)
     }
 
     override fun injectSelf() {

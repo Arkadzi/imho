@@ -8,10 +8,10 @@ open class User(val id: Long = 0,
                 val lastName: String,
                 var studentGroup: String?,
                 val type: String) {
-    val avatar = "https://www.biography.com/.image/t_share/MTQzMjc4OTI3ODc4NTYzNjk0/christian-bale_gettyimages-504405052jpg.jpg"
-
+    val avatar
+        get() = "https://cs5.pikabu.ru/post_img/2015/10/09/5/1444376651_2121134463.jpg"
 }
 
-enum class UserType {
-    STUDENT, LECTURER
-}
+
+const val TYPE_STUDENT = "STUDENT"
+const val TYPE_LECTURER = "LECTURER"

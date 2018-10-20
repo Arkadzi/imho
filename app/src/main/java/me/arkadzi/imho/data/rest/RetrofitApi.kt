@@ -24,4 +24,10 @@ interface RetrofitApi {
 
     @GET("labs/{labId}/lecturers")
     fun getLecturersByLab(@Path("labId") labId: Long): Single<List<Lecturer>>
+
+    @GET("graduateWorks/own")
+    fun getOwnGraduateWorks(@Query("userId") userId: Long): Single<List<GraduateWork>>
+
+    @GET("graduateWorks/offered")
+    fun getOfferedGraduateWorks(@Query("userId") userId: Long): Single<List<GraduateWork>>
 }
