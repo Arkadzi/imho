@@ -30,4 +30,7 @@ interface RetrofitApi {
 
     @GET("graduateWorks/offered")
     fun getOfferedGraduateWorks(@Query("userId") userId: Long): Single<List<GraduateWork>>
+
+    @POST("graduateWorks")
+    fun createGraduateWork(@Body graduateWork: GraduateWork): Single<ResponseBody>
 }

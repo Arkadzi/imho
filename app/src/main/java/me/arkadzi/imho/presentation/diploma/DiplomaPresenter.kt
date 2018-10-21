@@ -1,10 +1,13 @@
 package me.arkadzi.imho.presentation.diploma
 
+import me.arkadzi.imho.R
 import me.arkadzi.imho.app.utils.Messages
+import me.arkadzi.imho.domain.model.GraduateWork
 import me.arkadzi.imho.domain.model.Lab
 import me.arkadzi.imho.domain.model.LabPriority
 import me.arkadzi.imho.domain.subscribers.BaseProgressSubscriber
 import me.arkadzi.imho.domain.subscribers.BaseUseCaseSubscriber
+import me.arkadzi.imho.domain.usecase.CreateGraduateWorkUseCase
 import me.arkadzi.imho.domain.usecase.LabPrioritiesUseCase
 import me.arkadzi.imho.domain.usecase.LabsUseCase
 import me.arkadzi.imho.presentation.base.ProgressPresenter
@@ -15,7 +18,8 @@ import javax.inject.Inject
 class DiplomaPresenter @Inject constructor(
         messages: Messages,
         val labsUseCase: LabsUseCase,
-        val labPrioritiesUseCase: LabPrioritiesUseCase
+        val labPrioritiesUseCase: LabPrioritiesUseCase,
+        val createGraduateWorkUseCase: CreateGraduateWorkUseCase
 ) : ProgressPresenter<DiplomaView>(messages) {
     override fun onCreate(view: DiplomaView) {
         super.onCreate(view)
@@ -30,6 +34,22 @@ class DiplomaPresenter @Inject constructor(
             labPrioritiesUseCase.execute(getLabPrioritiesSubscriber())
         }
     }
+
+    fun onCreateGraduateWork(graduateWork: GraduateWork) {
+        createGraduateWorkUseCase.stopExecution()
+        createGraduateWorkUseCase.setData(graduateWork)
+        createGraduateWorkUseCase.execute(getCreateGraduateWorkSubscriber())
+    }
+
+    private fun getCreateGraduateWorkSubscriber(): BaseUseCaseSubscriber<Boolean> {
+        return object : BaseProgressSubscriber<Boolean>(this) {
+            override fun onSuccess(value: Boolean) {
+                showMessage(messages.getMessage(R.string.mes_created_successfully))
+                view?.close()
+            }
+        }
+    }
+
 
     private fun getLabsSubscriber(): BaseUseCaseSubscriber<List<Lab>> {
         return object : BaseProgressSubscriber<List<Lab>>(this) {

@@ -1,6 +1,9 @@
 package me.arkadzi.imho.presentation.diploma
 
+import android.support.annotation.StringRes
 import android.widget.ArrayAdapter
+import android.widget.EditText
+import android.widget.Spinner
 import kotlinx.android.synthetic.main.activity_diploma.*
 import me.arkadzi.imho.R
 import me.arkadzi.imho.app.lsteners.SpinnerSelectListener
@@ -23,6 +26,36 @@ class DiplomaActivity : BaseMvpActivity<DiplomaView, DiplomaPresenter>(), Diplom
         get() = (graduateWork == null)
 
     override fun initViews() {
+        initSpinners()
+        fab.setOnClickListener {
+            try {
+                val subject = getText(etSubject, R.string.warn_input_subject)
+                val description = getText(etDescription, R.string.warn_input_description)
+                val labPriority = spPriority.selectedItem() as? LabPriority
+                        ?: throw IllegalArgumentException(getString(R.string.warn_choose_priprity))
+                val academicDegree = (spYear.selectedItem as UIAcademicDegree).academicDegree
+                presenter.onCreateGraduateWork(GraduateWork(subject, description, academicDegree, labPriority.id, emptyList()))
+            } catch (e: IllegalArgumentException) {
+                showMessage(e.message!!)
+            }
+        }
+    }
+
+    override fun close() {
+        finish()
+    }
+
+    private fun getText(editText: EditText, @StringRes errorMes: Int): String {
+        return with(editText.text.trim()) {
+            if (isEmpty()) {
+                throw IllegalArgumentException(getString(errorMes))
+            } else {
+                this.toString()
+            }
+        }
+    }
+
+    private fun initSpinners() {
         spLab.onItemSelectedListener = object : SpinnerSelectListener<Lab>() {
             override fun onItemSelected(item: Lab) {
                 presenter.onLabSelected(item)
@@ -38,6 +71,7 @@ class DiplomaActivity : BaseMvpActivity<DiplomaView, DiplomaPresenter>(), Diplom
             add(0, Lab(-1, getString(R.string.hint_not_selected)))
         }
         spLab.adapter = ArrayAdapter<Lab>(this, R.layout.item_spinner, list)
+        fab.visible()
     }
 
     override fun setLabPriorities(labs: List<LabPriority>) {
@@ -64,5 +98,14 @@ class DiplomaActivity : BaseMvpActivity<DiplomaView, DiplomaPresenter>(), Diplom
 
     companion object {
         const val ARG_DIPLOMA = "ARG_DIPLOMA"
+    }
+
+    private fun Spinner.selectedItem(): LabPriority? {
+        val labPriority = selectedItem as? LabPriority
+        return if (labPriority == null || labPriority.id < 0) {
+            null
+        } else {
+            labPriority
+        }
     }
 }

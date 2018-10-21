@@ -19,4 +19,7 @@ class Messages constructor(private val c: Context) {
         } else e.toString()
     }
 
+    fun getMessage(@StringRes mesId: Int): String {
+        return c.getString(mesId)
+    }
 }

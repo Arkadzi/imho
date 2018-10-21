@@ -27,6 +27,10 @@ class RepositoryImpl(
         return restApi.getLabs()
     }
 
+    override fun createGraduateWork(graduateWork: GraduateWork): Single<Boolean> {
+        return restApi.createGraduateWork(graduateWork)
+    }
+
     override fun getLecturers(labId: Long?): Single<List<Lecturer>> {
         return restApi.getLecturers(labId)
     }

@@ -20,4 +20,8 @@
     <string name="hint_not_selected">Not selected</string>
     <string name="hint_bachelor">Bachelor</string>
     <string name="hint_master">Master</string>
+    <string name="warn_input_subject">Input subject</string>
+    <string name="warn_input_description">Input description</string>
+    <string name="mes_created_successfully">Created successfully</string>
+    <string name="warn_choose_priprity">Choose laboratory priority</string>
 </resources>
