@@ -1,7 +1,7 @@
 package me.arkadzi.imho.presentation.login
 
 import me.arkadzi.imho.app.utils.Messages
-import me.arkadzi.imho.domain.model.PostInfo
+import me.arkadzi.imho.domain.model.Account
 import me.arkadzi.imho.domain.model.User
 import me.arkadzi.imho.domain.subscribers.BaseProgressSubscriber
 import me.arkadzi.imho.domain.usecase.LoginUseCase
@@ -12,7 +12,8 @@ import javax.inject.Inject
 @ActivityScope
 class LoginPresenter @Inject constructor(
         messages: Messages,
-        val loginUseCase: LoginUseCase
+        val loginUseCase: LoginUseCase,
+        val account: Account
 ) : ProgressPresenter<LoginView>(messages) {
 
 
@@ -25,7 +26,7 @@ class LoginPresenter @Inject constructor(
         return object: BaseProgressSubscriber<User>(this) {
             override fun onSuccess(value: User) {
                 super.onSuccess(value)
-                view?.goToProfile()
+                view?.goToProfile(account.getUser()!!)
             }
         }
     }

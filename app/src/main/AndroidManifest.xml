@@ -22,7 +22,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".presentation.profile.MainActivity"
+            android:name=".presentation.profile.ProfileActivity"
             android:theme="@style/AppTheme.NoActionBar.Translucent" />
         <activity
             android:name=".presentation.base.LabContentActivity"
@@ -30,6 +30,7 @@
         <activity android:name=".presentation.labs.LabsActivity" />
         <activity android:name=".presentation.labs.LecturersActivity" />
         <activity android:name=".presentation.lab_content.LabPriorityActivity" />
+        <activity android:name=".presentation.diploma.DiplomaActivity" />
     </application>
 
 </manifest>

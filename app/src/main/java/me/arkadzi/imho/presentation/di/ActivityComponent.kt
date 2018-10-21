@@ -3,6 +3,7 @@ package me.arkadzi.imho.presentation.di
 import dagger.Subcomponent
 import me.arkadzi.imho.presentation.base.LabContentActivity
 import me.arkadzi.imho.presentation.di.scope.ActivityScope
+import me.arkadzi.imho.presentation.diploma.DiplomaActivity
 import me.arkadzi.imho.presentation.lab_content.LabPrioritiesFragment
 import me.arkadzi.imho.presentation.lab_content.LabPriorityActivity
 import me.arkadzi.imho.presentation.labs.LaboratoriesFragment
@@ -10,7 +11,7 @@ import me.arkadzi.imho.presentation.labs.LabsActivity
 import me.arkadzi.imho.presentation.labs.LecturersActivity
 import me.arkadzi.imho.presentation.lecturers.LecturersFragment
 import me.arkadzi.imho.presentation.login.LoginActivity
-import me.arkadzi.imho.presentation.profile.MainActivity
+import me.arkadzi.imho.presentation.profile.ProfileActivity
 import me.arkadzi.imho.presentation.profile.DiplomaListFragment
 import me.arkadzi.imho.presentation.splash.SplashActivity
 
@@ -20,7 +21,7 @@ import me.arkadzi.imho.presentation.splash.SplashActivity
 interface ActivityComponent {
     fun inject(loginActivity: LoginActivity)
     fun inject(splashActivity: SplashActivity)
-    fun inject(mainActivity: MainActivity)
+    fun inject(profileActivity: ProfileActivity)
     fun inject(LAbContentActivity: LabContentActivity)
     fun inject(laboratoriesFragment: LaboratoriesFragment)
     fun inject(lecturersFragment: LecturersFragment)
@@ -29,4 +30,5 @@ interface ActivityComponent {
     fun inject(labsActivity: LabsActivity)
     fun inject(lecturersActivity: LecturersActivity)
     fun inject(labPriorityActivity: LabPriorityActivity)
+    fun inject(diplomaActivity: DiplomaActivity)
 }

@@ -1,6 +1,9 @@
 package me.arkadzi.imho.app.utils
 
+import android.content.Context
+import me.arkadzi.imho.R
 import me.arkadzi.imho.domain.model.*
+import me.arkadzi.imho.presentation.model.UIAcademicDegree
 
 val User.isStudent
     get() = type.equals(TYPE_STUDENT, ignoreCase = true)
@@ -23,3 +26,15 @@ val User.grade
     } else {
         "студент $studentGroup"
     }
+
+fun Lecturer.asUser() =
+        User(id, email, firstName, middleName, lastName, null, TYPE_LECTURER)
+
+fun AcademicDegree.mapToUI(context: Context) = UIAcademicDegree(
+        when (this) {
+            AcademicDegree.BACHELOR -> context.getString(R.string.hint_bachelor)
+            AcademicDegree.MASTER -> context.getString(R.string.hint_master)
+        },
+        this)
+
+fun List<AcademicDegree>.mapToUI(context: Context) = this.map { it.mapToUI(context) }

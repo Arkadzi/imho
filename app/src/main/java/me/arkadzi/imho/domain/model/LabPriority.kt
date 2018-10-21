@@ -7,4 +7,8 @@ class LabPriority(
         var title: String,
         var description: String,
         var labId: Long
-) : Serializable
+) : Serializable {
+    override fun toString(): String {
+        return title
+    }
+}

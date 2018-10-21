@@ -28,3 +28,10 @@ fun ImageView.setImageUrl(url: String, round: Boolean = false) {
     }
     load.into(this)
 }
+fun View.shown(shown: Boolean) {
+    if (shown) {
+        visible()
+    } else {
+        gone()
+    }
+}

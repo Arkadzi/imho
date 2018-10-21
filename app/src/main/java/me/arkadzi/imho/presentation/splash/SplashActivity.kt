@@ -5,7 +5,7 @@ import me.arkadzi.imho.app.utils.Launcher
 import me.arkadzi.imho.app.utils.applicationComponent
 import me.arkadzi.imho.presentation.base.BaseActivity
 
-class SplashActivity: BaseActivity() {
+class SplashActivity : BaseActivity() {
     override val contentViewId = null
 
     override fun injectSelf() {
@@ -14,8 +14,9 @@ class SplashActivity: BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        if (applicationComponent.account().isAuthorized()) {
-            Launcher.startMainScreen(this)
+        val account = applicationComponent.account()
+        if (account.isAuthorized()) {
+            Launcher.startProfileScreen(this, account.getUser()!!)
         } else {
             Launcher.startLoginScreen(this)
         }

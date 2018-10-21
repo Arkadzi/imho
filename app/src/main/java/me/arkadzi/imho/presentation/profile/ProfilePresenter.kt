@@ -14,6 +14,6 @@ class ProfilePresenter @Inject constructor(
 ) : ProgressPresenter<ProfileView>(messages) {
     override fun onCreate(view: ProfileView) {
         super.onCreate(view)
-        view.renderUser(account.getUser()!!)
+        view.renderUser(view.user)
     }
 }

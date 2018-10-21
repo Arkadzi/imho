@@ -5,4 +5,8 @@ import java.io.Serializable
 data class Lab(
         var id: Long,
         var title: String
-): Serializable
+): Serializable {
+    override fun toString(): String {
+        return title
+    }
+}

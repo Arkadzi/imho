@@ -13,4 +13,11 @@
     <string name="hint_profile">Profile</string>
     <string name="hint_lab">Laboratory</string>
     <string name="diploma_themes">Diploma themes</string>
+    <string name="action_create_work">Create new</string>
+    <string name="action_edit_work">Edit</string>
+    <string name="graduate_work_subject">Graduate work subject</string>
+    <string name="graduate_work_desctiption">Description</string>
+    <string name="hint_not_selected">Not selected</string>
+    <string name="hint_bachelor">Bachelor</string>
+    <string name="hint_master">Master</string>
 </resources>

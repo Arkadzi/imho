@@ -1,6 +1,8 @@
 package me.arkadzi.imho.presentation.lecturers
 
 import android.os.Bundle
+import me.arkadzi.imho.app.utils.Launcher
+import me.arkadzi.imho.app.utils.asUser
 import me.arkadzi.imho.domain.model.Lab
 import me.arkadzi.imho.domain.model.Lecturer
 import me.arkadzi.imho.presentation.BaseListFragment
@@ -17,6 +19,10 @@ class LecturersFragment : BaseListFragment<Lecturer, LabContentView<Lecturer>, L
 
     override fun injectSelf() {
         activityComponent.inject(this)
+    }
+
+    override fun onItemClick(item: Lecturer) {
+        Launcher.startProfileScreen(activity!!, item.asUser())
     }
 
     companion object {
