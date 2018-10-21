@@ -33,4 +33,7 @@ interface RetrofitApi {
 
     @POST("graduateWorks")
     fun createGraduateWork(@Body graduateWork: GraduateWork): Single<ResponseBody>
+
+    @GET("priorities/{priorityId}")
+    fun getLabAndPriorities(@Path("priorityId") priorityId: Long): Single<LabAndPriority>
 }

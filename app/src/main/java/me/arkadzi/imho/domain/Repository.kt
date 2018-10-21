@@ -11,4 +11,5 @@ interface Repository {
     fun getLabPriorities(labId: Long): Single<List<LabPriority>>
     fun getGraduateWorks(userId: Long, owner: Boolean): Single<List<GraduateWork>>
     fun createGraduateWork(graduateWork: GraduateWork): Single<Boolean>
+    fun getLabAndPriorities(priorityId: Long): Single<LabAndPriority>
 }

@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:background="?selectableItemBackground"
     android:orientation="vertical"
     android:paddingLeft="@dimen/padding_list_horizontal"
     android:paddingTop="@dimen/padding_list_vertical"
@@ -19,10 +21,4 @@
         android:textColor="?android:attr/textColorPrimary"
         tools:text="lorem ipsum" />
 
-    <TextView
-        android:id="@+id/tvDescription"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        tools:text="lorem ipsum" />
 </LinearLayout>

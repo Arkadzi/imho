@@ -7,9 +7,7 @@ import android.widget.Spinner
 import kotlinx.android.synthetic.main.activity_diploma.*
 import me.arkadzi.imho.R
 import me.arkadzi.imho.app.lsteners.SpinnerSelectListener
-import me.arkadzi.imho.app.utils.gone
-import me.arkadzi.imho.app.utils.mapToUI
-import me.arkadzi.imho.app.utils.visible
+import me.arkadzi.imho.app.utils.*
 import me.arkadzi.imho.domain.model.AcademicDegree
 import me.arkadzi.imho.domain.model.GraduateWork
 import me.arkadzi.imho.domain.model.Lab
@@ -20,24 +18,33 @@ import me.arkadzi.imho.presentation.model.UIAcademicDegree
 class DiplomaActivity : BaseMvpActivity<DiplomaView, DiplomaPresenter>(), DiplomaView {
     override val contentViewId = R.layout.activity_diploma
     override val hasBackButton = true
-    val graduateWork: GraduateWork?
+    override val graduateWork: GraduateWork?
         get() = intent!!.getSerializableExtra(ARG_DIPLOMA) as? GraduateWork
-    val isCreatingNew
+    override val isCreatingNew
         get() = (graduateWork == null)
 
     override fun initViews() {
         initSpinners()
+        spYear.isEnabled = isCreatingNew
+        spPriority.isEnabled = isCreatingNew
+        spLab.isEnabled = isCreatingNew
+        etSubject.isEnabled = isCreatingNew
+        etDescription.isEnabled = isCreatingNew
         fab.setOnClickListener {
-            try {
-                val subject = getText(etSubject, R.string.warn_input_subject)
-                val description = getText(etDescription, R.string.warn_input_description)
-                val labPriority = spPriority.selectedItem() as? LabPriority
-                        ?: throw IllegalArgumentException(getString(R.string.warn_choose_priprity))
-                val academicDegree = (spYear.selectedItem as UIAcademicDegree).academicDegree
-                presenter.onCreateGraduateWork(GraduateWork(subject, description, academicDegree, labPriority.id, emptyList()))
-            } catch (e: IllegalArgumentException) {
-                showMessage(e.message!!)
-            }
+            onCreateClick()
+        }
+    }
+
+    private fun onCreateClick() {
+        try {
+            val subject = getText(etSubject, R.string.warn_input_subject)
+            val description = getText(etDescription, R.string.warn_input_description)
+            val labPriority = spPriority.selectedItem() as? LabPriority
+                    ?: throw IllegalArgumentException(getString(R.string.warn_choose_priprity))
+            val academicDegree = (spYear.selectedItem as UIAcademicDegree).academicDegree
+            presenter.onCreateGraduateWork(GraduateWork(subject, description, academicDegree, labPriority.id, emptyList()))
+        } catch (e: IllegalArgumentException) {
+            showMessage(e.message!!)
         }
     }
 
@@ -67,23 +74,22 @@ class DiplomaActivity : BaseMvpActivity<DiplomaView, DiplomaPresenter>(), Diplom
     }
 
     override fun setLabs(labs: List<Lab>) {
-        val list = labs.toMutableList().apply {
-            add(0, Lab(-1, getString(R.string.hint_not_selected)))
-        }
-        spLab.adapter = ArrayAdapter<Lab>(this, R.layout.item_spinner, list)
-        fab.visible()
+        spLab.adapter = ArrayAdapter<Lab>(this, R.layout.item_spinner, labs)
+        fab.shown(isCreatingNew)
     }
 
-    override fun setLabPriorities(labs: List<LabPriority>) {
-        if (labs.isEmpty()) {
+    override fun setLabPriorities(priorities: List<LabPriority>) {
+        if (priorities.isEmpty()) {
             spPriority.gone()
         } else {
-            val list = labs.toMutableList().apply {
-                add(0, LabPriority(-1, getString(R.string.hint_not_selected), "", -1))
-            }
-            spPriority.adapter = ArrayAdapter<LabPriority>(this, R.layout.item_spinner, list)
+            spPriority.adapter = ArrayAdapter<LabPriority>(this, R.layout.item_spinner, priorities)
             spPriority.visible()
         }
+    }
+
+    override fun setDiploma(graduateWork: GraduateWork) {
+        etSubject.setText(graduateWork.title)
+        etDescription.setText(graduateWork.description)
     }
 
     override fun provideTitle() = if (isCreatingNew) {

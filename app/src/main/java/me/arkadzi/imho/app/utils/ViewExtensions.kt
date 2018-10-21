@@ -1,8 +1,10 @@
 package me.arkadzi.imho.app.utils
 
 import android.view.View
+import android.widget.Adapter
 import android.widget.EditText
 import android.widget.ImageView
+import android.widget.Spinner
 import com.squareup.picasso.Picasso
 import me.arkadzi.imho.presentation.utils.CircleTransform
 
@@ -28,6 +30,7 @@ fun ImageView.setImageUrl(url: String, round: Boolean = false) {
     }
     load.into(this)
 }
+
 fun View.shown(shown: Boolean) {
     if (shown) {
         visible()
@@ -35,3 +38,9 @@ fun View.shown(shown: Boolean) {
         gone()
     }
 }
+
+val Adapter.data
+    get() = (0..count - 1).map { getItem(it) }.toList()
+
+fun <T> Spinner.data(): List<T> =
+        adapter.data.map { it as T }

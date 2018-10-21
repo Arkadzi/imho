@@ -1,6 +1,7 @@
 package me.arkadzi.imho.presentation.profile
 
 import android.os.Bundle
+import me.arkadzi.imho.app.utils.Launcher
 import me.arkadzi.imho.domain.model.GraduateWork
 import me.arkadzi.imho.domain.model.Lab
 import me.arkadzi.imho.domain.model.User
@@ -22,6 +23,9 @@ class DiplomaListFragment: BaseListFragment<GraduateWork, DiplomaListView<Gradua
         activityComponent.inject(this)
     }
 
+    override fun onItemClick(item: GraduateWork) {
+        Launcher.startDiplomaWorkScreen(activity!!, item)
+    }
     companion object {
         const val ARG_USER_ID = "arg_lab"
         const val ARG_IS_OWNER = "arg_owner"

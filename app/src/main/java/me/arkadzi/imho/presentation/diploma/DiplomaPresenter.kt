@@ -4,10 +4,12 @@ import me.arkadzi.imho.R
 import me.arkadzi.imho.app.utils.Messages
 import me.arkadzi.imho.domain.model.GraduateWork
 import me.arkadzi.imho.domain.model.Lab
+import me.arkadzi.imho.domain.model.LabAndPriority
 import me.arkadzi.imho.domain.model.LabPriority
 import me.arkadzi.imho.domain.subscribers.BaseProgressSubscriber
 import me.arkadzi.imho.domain.subscribers.BaseUseCaseSubscriber
 import me.arkadzi.imho.domain.usecase.CreateGraduateWorkUseCase
+import me.arkadzi.imho.domain.usecase.GetLabAndPriorityUseCase
 import me.arkadzi.imho.domain.usecase.LabPrioritiesUseCase
 import me.arkadzi.imho.domain.usecase.LabsUseCase
 import me.arkadzi.imho.presentation.base.ProgressPresenter
@@ -19,20 +21,39 @@ class DiplomaPresenter @Inject constructor(
         messages: Messages,
         val labsUseCase: LabsUseCase,
         val labPrioritiesUseCase: LabPrioritiesUseCase,
-        val createGraduateWorkUseCase: CreateGraduateWorkUseCase
+        val createGraduateWorkUseCase: CreateGraduateWorkUseCase,
+        val getLabAndPriorityUseCase: GetLabAndPriorityUseCase
 ) : ProgressPresenter<DiplomaView>(messages) {
     override fun onCreate(view: DiplomaView) {
         super.onCreate(view)
-        labsUseCase.execute(getLabsSubscriber())
+        if (view.isCreatingNew) {
+            labsUseCase.execute(getLabsSubscriber())
+        } else {
+            val graduateWork = view.graduateWork!!
+            getLabAndPriorityUseCase.setData(graduateWork.labPriorityId)
+            getLabAndPriorityUseCase.execute(getLabAndPrioritySubscriber())
+            view.setDiploma(graduateWork)
+        }
+    }
+
+    private fun getLabAndPrioritySubscriber(): BaseUseCaseSubscriber<LabAndPriority> {
+        return object : BaseProgressSubscriber<LabAndPriority>(this) {
+            override fun onSuccess(value: LabAndPriority) {
+                view?.setLabs(listOf(value.lab))
+                view?.setLabPriorities(listOf(value.priority))
+            }
+        }
     }
 
     fun onLabSelected(item: Lab) {
-        view?.setLabPriorities(listOf())
-        if (item.id >= 0) {
-            labPrioritiesUseCase.stopExecution()
-            labPrioritiesUseCase.setData(item.id)
-            labPrioritiesUseCase.execute(getLabPrioritiesSubscriber())
-        }
+            if (view?.isCreatingNew == true) {
+                view?.setLabPriorities(listOf())
+                if (item.id >= 0) {
+                    labPrioritiesUseCase.stopExecution()
+                    labPrioritiesUseCase.setData(item.id)
+                    labPrioritiesUseCase.execute(getLabPrioritiesSubscriber())
+                }
+            }
     }
 
     fun onCreateGraduateWork(graduateWork: GraduateWork) {
@@ -54,7 +75,10 @@ class DiplomaPresenter @Inject constructor(
     private fun getLabsSubscriber(): BaseUseCaseSubscriber<List<Lab>> {
         return object : BaseProgressSubscriber<List<Lab>>(this) {
             override fun onSuccess(value: List<Lab>) {
-                view?.setLabs(value)
+                val list = value.toMutableList().apply {
+                    add(0, Lab(-1, messages.getMessage(R.string.hint_not_selected)))
+                }
+                view?.setLabs(list)
             }
         }
     }
@@ -62,7 +86,10 @@ class DiplomaPresenter @Inject constructor(
     private fun getLabPrioritiesSubscriber(): BaseUseCaseSubscriber<List<LabPriority>> {
         return object : BaseProgressSubscriber<List<LabPriority>>(this) {
             override fun onSuccess(value: List<LabPriority>) {
-                view?.setLabPriorities(value)
+                val list = value.toMutableList().apply {
+                    add(0, LabPriority(-1, messages.getMessage(R.string.hint_not_selected), "", -1))
+                }
+                view?.setLabPriorities(list)
             }
         }
     }

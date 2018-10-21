@@ -43,4 +43,8 @@ class RestApi(private val api: RetrofitApi) {
     fun createGraduateWork(graduateWork: GraduateWork): Single<Boolean> {
         return api.createGraduateWork(graduateWork).map { true }
     }
+
+    fun getLabAndPriorities(priorityId: Long): Single<LabAndPriority> {
+        return api.getLabAndPriorities(priorityId)
+    }
 }
