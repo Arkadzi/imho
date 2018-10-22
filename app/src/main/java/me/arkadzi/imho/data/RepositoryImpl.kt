@@ -35,6 +35,10 @@ class RepositoryImpl(
         return restApi.getLabAndPriorities(priorityId)
     }
 
+    override fun offerWork(workId: Long, userId: Long, cancel: Boolean): Single<Boolean> {
+        return restApi.offerWork(workId, userId, cancel)
+    }
+
     override fun getLecturers(labId: Long?): Single<List<Lecturer>> {
         return restApi.getLecturers(labId)
     }

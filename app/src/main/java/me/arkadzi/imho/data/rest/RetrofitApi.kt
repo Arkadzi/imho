@@ -36,4 +36,11 @@ interface RetrofitApi {
 
     @GET("priorities/{priorityId}")
     fun getLabAndPriorities(@Path("priorityId") priorityId: Long): Single<LabAndPriority>
+
+    @POST("graduateWorks/offer")
+    fun offerWork(
+            @Query("workId") workId: Long,
+            @Query("userId") userId: Long,
+            @Query("cancel") cancel: Boolean
+    ): Single<ResponseBody>
 }

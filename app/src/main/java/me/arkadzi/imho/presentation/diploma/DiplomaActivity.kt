@@ -1,6 +1,7 @@
 package me.arkadzi.imho.presentation.diploma
 
 import android.support.annotation.StringRes
+import android.support.v7.app.AlertDialog
 import android.widget.ArrayAdapter
 import android.widget.EditText
 import android.widget.Spinner
@@ -8,12 +9,10 @@ import kotlinx.android.synthetic.main.activity_diploma.*
 import me.arkadzi.imho.R
 import me.arkadzi.imho.app.lsteners.SpinnerSelectListener
 import me.arkadzi.imho.app.utils.*
-import me.arkadzi.imho.domain.model.AcademicDegree
-import me.arkadzi.imho.domain.model.GraduateWork
-import me.arkadzi.imho.domain.model.Lab
-import me.arkadzi.imho.domain.model.LabPriority
+import me.arkadzi.imho.domain.model.*
 import me.arkadzi.imho.presentation.base.BaseMvpActivity
 import me.arkadzi.imho.presentation.model.UIAcademicDegree
+import javax.inject.Inject
 
 class DiplomaActivity : BaseMvpActivity<DiplomaView, DiplomaPresenter>(), DiplomaView {
     override val contentViewId = R.layout.activity_diploma
@@ -22,6 +21,13 @@ class DiplomaActivity : BaseMvpActivity<DiplomaView, DiplomaPresenter>(), Diplom
         get() = intent!!.getSerializableExtra(ARG_DIPLOMA) as? GraduateWork
     override val isCreatingNew
         get() = (graduateWork == null)
+    @Inject
+    lateinit var account: Account
+    val isCurrentUserOwner
+        get() = graduateWork != null && graduateWork!!.isUserOwner(account.getUser()!!)
+    val isOfferedToCurrentUser
+        get() = graduateWork != null && graduateWork!!.isUserSubscribed(account.getUser()!!)
+    private var lecturersAlert: AlertDialog? = null
 
     override fun initViews() {
         initSpinners()
@@ -30,9 +36,39 @@ class DiplomaActivity : BaseMvpActivity<DiplomaView, DiplomaPresenter>(), Diplom
         spLab.isEnabled = isCreatingNew
         etSubject.isEnabled = isCreatingNew
         etDescription.isEnabled = isCreatingNew
+        initButtons()
+
+    }
+
+    private fun initButtons() {
         fab.setOnClickListener {
             onCreateClick()
         }
+        btShare.setOnClickListener {
+            presenter.onOfferClick()
+        }
+
+        fab.shown(isCreatingNew)
+        btShare.shown(isCurrentUserOwner)
+        btAccept.shown(isOfferedToCurrentUser)
+    }
+
+
+    override fun showLecturers(value: List<Lecturer>) {
+        val list = value.map { it.fullName }.toTypedArray()
+        lecturersAlert = AlertDialog.Builder(this)
+                .setItems(list) { dialog, which ->
+                    presenter.onLecturerChosen(value[which])
+                }
+                .create()
+                .apply {
+                    show()
+                }
+    }
+
+    override fun onDestroy() {
+        lecturersAlert?.dismiss()
+        super.onDestroy()
     }
 
     private fun onCreateClick() {
@@ -42,7 +78,7 @@ class DiplomaActivity : BaseMvpActivity<DiplomaView, DiplomaPresenter>(), Diplom
             val labPriority = spPriority.selectedItem() as? LabPriority
                     ?: throw IllegalArgumentException(getString(R.string.warn_choose_priprity))
             val academicDegree = (spYear.selectedItem as UIAcademicDegree).academicDegree
-            presenter.onCreateGraduateWork(GraduateWork(subject, description, academicDegree, labPriority.id, emptyList()))
+            presenter.onCreateGraduateWork(GraduateWork(0, subject, description, academicDegree, labPriority.id, emptyList()))
         } catch (e: IllegalArgumentException) {
             showMessage(e.message!!)
         }
@@ -75,7 +111,6 @@ class DiplomaActivity : BaseMvpActivity<DiplomaView, DiplomaPresenter>(), Diplom
 
     override fun setLabs(labs: List<Lab>) {
         spLab.adapter = ArrayAdapter<Lab>(this, R.layout.item_spinner, labs)
-        fab.shown(isCreatingNew)
     }
 
     override fun setLabPriorities(priorities: List<LabPriority>) {

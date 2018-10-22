@@ -24,4 +24,6 @@
     <string name="warn_input_description">Input description</string>
     <string name="mes_created_successfully">Created successfully</string>
     <string name="warn_choose_priprity">Choose laboratory priority</string>
+    <string name="action_offer">Offer</string>
+    <string name="mes_offered_successfully">Offered successfully</string>
 </resources>

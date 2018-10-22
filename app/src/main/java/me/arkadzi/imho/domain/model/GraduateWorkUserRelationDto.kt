@@ -1,3 +1,3 @@
 package me.arkadzi.imho.domain.model
 
-class GraduateWorkUserRelationDto(var status: GraduateWorkStatus, recipientId: Long)
+class GraduateWorkUserRelationDto(var status: GraduateWorkStatus, val recipientId: Long)

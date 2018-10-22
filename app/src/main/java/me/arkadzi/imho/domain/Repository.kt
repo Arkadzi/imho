@@ -12,4 +12,5 @@ interface Repository {
     fun getGraduateWorks(userId: Long, owner: Boolean): Single<List<GraduateWork>>
     fun createGraduateWork(graduateWork: GraduateWork): Single<Boolean>
     fun getLabAndPriorities(priorityId: Long): Single<LabAndPriority>
+    fun offerWork(workId: Long, userId: Long, cancel: Boolean): Single<Boolean>
 }
