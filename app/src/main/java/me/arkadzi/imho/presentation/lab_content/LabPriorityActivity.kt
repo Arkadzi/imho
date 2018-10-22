@@ -19,7 +19,7 @@ class LabPriorityActivity : BaseActivity() {
     override fun provideTitle() = labPriority.title
 
     override fun initViews() {
-        tvDescription.text = labPriority.description
+        wvDescription.loadDataWithBaseURL("", labPriority.description, "text/html", "UTF-8", "");
     }
 
     companion object {
