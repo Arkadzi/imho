@@ -26,4 +26,5 @@
     <string name="warn_choose_priprity">Оберіть лабораторію та напрям</string>
     <string name="action_offer">Запропонувати</string>
     <string name="mes_offered_successfully">Запропоновано</string>
+    <string name="hint_proposed_to">Запропроновано</string>
 </resources>

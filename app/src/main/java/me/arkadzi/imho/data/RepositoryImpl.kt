@@ -23,8 +23,8 @@ class RepositoryImpl(
                 .singleOrError()
     }
 
-    override fun getLabs(): Single<List<Lab>> {
-        return restApi.getLabs()
+    override fun getLabs(lectureId: Long?): Single<List<Lab>> {
+        return restApi.getLabs(lectureId)
     }
 
     override fun createGraduateWork(graduateWork: GraduateWork): Single<Boolean> {

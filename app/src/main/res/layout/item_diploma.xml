@@ -20,5 +20,14 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Title"
         android:textColor="?android:attr/textColorPrimary"
         tools:text="lorem ipsum" />
+    <TextView
+        android:id="@+id/tvProposedTo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:maxLines="2"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textColor="?android:attr/textColorPrimary"
+        tools:text="lorem ipsum" />
 
 </LinearLayout>

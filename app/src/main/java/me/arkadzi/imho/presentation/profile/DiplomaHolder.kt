@@ -16,5 +16,6 @@ class DiplomaHolder(
 
     override fun bind(data: GraduateWork) {
         tvTitle.text = data.title
+        tvProposedTo.text = "${context.getString(R.string.hint_proposed_to)}: ${data.subscribers.size}"
     }
 }

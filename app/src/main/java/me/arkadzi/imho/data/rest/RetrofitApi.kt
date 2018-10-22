@@ -25,6 +25,9 @@ interface RetrofitApi {
     @GET("labs/{labId}/lecturers")
     fun getLecturersByLab(@Path("labId") labId: Long): Single<List<Lecturer>>
 
+    @GET("lecturers/{lectId}/labs")
+    fun getLabsByLecturers(@Path("lectId") lectId: Long): Single<List<Lab>>
+
     @GET("graduateWorks/own")
     fun getOwnGraduateWorks(@Query("userId") userId: Long): Single<List<GraduateWork>>
 
@@ -43,4 +46,5 @@ interface RetrofitApi {
             @Query("userId") userId: Long,
             @Query("cancel") cancel: Boolean
     ): Single<ResponseBody>
+
 }

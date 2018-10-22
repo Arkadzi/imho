@@ -2,6 +2,7 @@ package me.arkadzi.imho.presentation.diploma
 
 import me.arkadzi.imho.R
 import me.arkadzi.imho.app.utils.Messages
+import me.arkadzi.imho.app.utils.isLecturer
 import me.arkadzi.imho.domain.model.*
 import me.arkadzi.imho.domain.subscribers.BaseProgressSubscriber
 import me.arkadzi.imho.domain.subscribers.BaseUseCaseSubscriber
@@ -18,13 +19,17 @@ class DiplomaPresenter @Inject constructor(
         val createGraduateWorkUseCase: CreateGraduateWorkUseCase,
         val getLabAndPriorityUseCase: GetLabAndPriorityUseCase,
         val lecturersUseCase: LecturersUseCase,
-        val offerGraduateWorkUseCase: OfferGraduateWorkUseCase
+        val offerGraduateWorkUseCase: OfferGraduateWorkUseCase,
+        val account: Account
 ) : ProgressPresenter<DiplomaView>(messages) {
     private var lab: Lab? = null
 
     override fun onCreate(view: DiplomaView) {
         super.onCreate(view)
         if (view.isCreatingNew) {
+            if (account.getUser()!!.isLecturer) {
+                labsUseCase.setData(account.getUser()!!.id)
+            }
             labsUseCase.execute(getLabsSubscriber())
         } else {
             val graduateWork = view.graduateWork!!

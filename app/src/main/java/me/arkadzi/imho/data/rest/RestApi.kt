@@ -14,8 +14,12 @@ class RestApi(private val api: RetrofitApi) {
         return api.getSelf(token)
     }
 
-    fun getLabs(): Single<List<Lab>> {
-        return api.getLabs()
+    fun getLabs(lectureId: Long?): Single<List<Lab>> {
+        return if (lectureId != null) {
+            api.getLabsByLecturers(lectureId)
+        } else {
+            api.getLabs()
+        }
     }
 
     fun getLecturers(labId: Long?): Single<List<Lecturer>> {
@@ -25,6 +29,7 @@ class RestApi(private val api: RetrofitApi) {
             api.getLecturers()
         }
     }
+
 
     fun getLabPriorities(labId: Long): Single<List<LabPriority>> {
         return api.getLabPriorities(labId)

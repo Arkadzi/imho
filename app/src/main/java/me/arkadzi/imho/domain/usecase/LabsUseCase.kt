@@ -12,6 +12,11 @@ class LabsUseCase @Inject constructor(
         observeOn: ObserveOn,
         private val repository: Repository
 ) : ListUseCase<Lab>(subscribeOn, observeOn) {
+    private var lectureId: Long? = null
 
-    override fun useCaseObservable() = repository.getLabs()
+    fun setData(lectureId: Long?) {
+        this.lectureId = lectureId
+    }
+
+    override fun useCaseObservable() = repository.getLabs(lectureId)
 }
