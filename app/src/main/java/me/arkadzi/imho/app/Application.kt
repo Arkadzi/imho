@@ -24,6 +24,10 @@ class Application : android.app.Application() {
                 .build()
     }
 
+    fun logout() {
+        appComponent.account().clear()
+    }
+
     companion object {
 
         fun getApp(context: Context): Application {

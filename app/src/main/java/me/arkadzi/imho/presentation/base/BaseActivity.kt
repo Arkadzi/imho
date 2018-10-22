@@ -22,6 +22,8 @@ abstract class BaseActivity : AppCompatActivity(), View {
         else
             configurationInstance as ActivityComponent
     }
+    protected val app
+        get() = applicationContext as Application
 
     override fun onRetainCustomNonConfigurationInstance(): Any? {
         return activityComponent
