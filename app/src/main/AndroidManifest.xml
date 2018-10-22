@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="me.arkadzi.imho">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -11,8 +12,10 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme.ActionBar">
-        <activity android:name=".presentation.login.LoginActivity" />
+        android:theme="@style/AppTheme.ActionBar"
+        tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".presentation.login.LoginActivity"
+            android:theme="@style/AppTheme.Dark.NoActionBar"/>
 
         <activity android:name=".presentation.splash.SplashActivity">
             <intent-filter>

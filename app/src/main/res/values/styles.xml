@@ -18,4 +18,14 @@
     <style name="AppTheme.NoActionBar.Translucent">
         <item name="android:windowTranslucentStatus">true</item>
     </style>
+
+
+    <style name="AppTheme.Dark.NoActionBar" parent="Theme.AppCompat.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowBackground">@color/colorPrimaryDark</item>
+        <!--<item name="colorButtonNormal">@color/colorPrimaryDark</item>-->
+    </style>
 </resources>

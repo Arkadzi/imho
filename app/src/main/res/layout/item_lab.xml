@@ -4,13 +4,20 @@
     android:layout_width="match_parent"
     android:minHeight="56dp"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
+    android:orientation="horizontal"
     android:background="?selectableItemBackground"
     android:gravity="center_vertical"
     android:paddingLeft="@dimen/padding_list_horizontal"
     android:paddingTop="@dimen/padding_list_vertical"
     android:paddingRight="@dimen/padding_list_horizontal"
     android:paddingBottom="@dimen/padding_list_vertical">
+    <ImageView
+        android:id="@+id/ivIcon"
+        android:layout_width="wrap_content"
+        tools:src="@drawable/ic_lab"
+        android:tint="@color/colorPrimaryDark"
+        android:layout_marginRight="16dp"
+        android:layout_height="wrap_content" />
 
     <TextView
         android:id="@+id/tvTitle"
