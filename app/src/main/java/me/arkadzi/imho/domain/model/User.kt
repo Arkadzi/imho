@@ -8,11 +8,10 @@ open class User(val id: Long = 0,
                 val middleName: String,
                 val lastName: String,
                 var studentGroup: String?,
+                val avatarUrl: String?,
                 val type: String
-) : Serializable {
-    val avatar
-        get() = "https://cs5.pikabu.ru/post_img/2015/10/09/5/1444376651_2121134463.jpg"
-}
+
+) : Serializable
 
 
 const val TYPE_STUDENT = "STUDENT"

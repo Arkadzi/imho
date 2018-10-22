@@ -38,7 +38,7 @@ class ProfileActivity : BaseMvpActivity<ProfileView, ProfilePresenter>(), Profil
     override fun renderUser(user: User) {
         tvName.text = user.fullName
         tvGrade.text = user.grade
-        ivAvatar.setImageUrl(user.avatar, round = true)
+        ivAvatar.setImageUrl(user.avatarUrl, round = true)
     }
 
     override fun injectSelf() {

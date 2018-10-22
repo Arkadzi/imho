@@ -23,7 +23,10 @@ fun View.gone() {
     visibility = View.GONE
 }
 
-fun ImageView.setImageUrl(url: String, round: Boolean = false) {
+fun ImageView.setImageUrl(url: String?, round: Boolean = false) {
+    if (url == null) {
+        return
+    }
     val load = Picasso.get().load(url)
     if (round) {
         load.transform(CircleTransform())

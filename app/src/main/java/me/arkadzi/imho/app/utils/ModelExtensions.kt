@@ -28,7 +28,7 @@ val User.grade
     }
 
 fun Lecturer.asUser() =
-        User(id, email, firstName, middleName, lastName, null, TYPE_LECTURER)
+        User(id, email, firstName, middleName, lastName, null, avatarUrl, TYPE_LECTURER)
 
 fun AcademicDegree.mapToUI(context: Context) = UIAcademicDegree(
         when (this) {

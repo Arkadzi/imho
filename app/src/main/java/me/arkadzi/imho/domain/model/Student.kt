@@ -5,7 +5,5 @@ class Student(val id: Long = 0,
               val firstName: String,
               val middleName: String,
               val lastName: String,
-              val studentGroup: String
-) {
-    val avatar = "https://www.biography.com/.image/t_share/MTQzMjc4OTI3ODc4NTYzNjk0/christian-bale_gettyimages-504405052jpg.jpg"
-}
+              val studentGroup: String,
+              val avatarUrl: String?)
