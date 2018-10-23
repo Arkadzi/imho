@@ -38,6 +38,7 @@ class ProfileActivity : BaseMvpActivity<ProfileView, ProfilePresenter>(), Profil
     override fun renderUser(user: User) {
         tvName.text = user.fullName
         tvGrade.text = user.grade
+        tvEmail.text = user.email
         ivAvatar.setImageUrl(user.avatarUrl, round = true)
     }
 

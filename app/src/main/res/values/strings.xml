@@ -27,4 +27,5 @@
     <string name="action_offer">Запропонувати</string>
     <string name="mes_offered_successfully">Запропоновано</string>
     <string name="hint_proposed_to">Запропроновано</string>
+    <string name="hint_author">Автор</string>
 </resources>

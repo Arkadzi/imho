@@ -6,6 +6,7 @@ import android.widget.ArrayAdapter
 import android.widget.EditText
 import android.widget.Spinner
 import kotlinx.android.synthetic.main.activity_diploma.*
+import kotlinx.android.synthetic.main.item_lecturer.*
 import me.arkadzi.imho.R
 import me.arkadzi.imho.app.lsteners.SpinnerSelectListener
 import me.arkadzi.imho.app.utils.*
@@ -23,10 +24,7 @@ class DiplomaActivity : BaseMvpActivity<DiplomaView, DiplomaPresenter>(), Diplom
         get() = (graduateWork == null)
     @Inject
     lateinit var account: Account
-    val isCurrentUserOwner
-        get() = graduateWork != null && graduateWork!!.isUserOwner(account.getUser()!!)
-    val isOfferedToCurrentUser
-        get() = graduateWork != null && graduateWork!!.isUserSubscribed(account.getUser()!!)
+
     private var lecturersAlert: AlertDialog? = null
 
     override fun initViews() {
@@ -36,8 +34,24 @@ class DiplomaActivity : BaseMvpActivity<DiplomaView, DiplomaPresenter>(), Diplom
         spLab.isEnabled = isCreatingNew
         etSubject.isEnabled = isCreatingNew
         etDescription.isEnabled = isCreatingNew
+        initAuthorView()
         initButtons()
 
+    }
+
+    private fun initAuthorView() {
+        val work = graduateWork
+        if (work != null) {
+            val owner = work.owner!!
+            tvName.text = owner.fullName
+            tvGrade.text = owner.grade
+            ivAvatar.setImageUrl(owner.avatarUrl, round = true)
+            authorView.visible()
+            shadowView.visible()
+        } else {
+            authorView.gone()
+            shadowView.gone()
+        }
     }
 
     private fun initButtons() {
@@ -49,9 +63,13 @@ class DiplomaActivity : BaseMvpActivity<DiplomaView, DiplomaPresenter>(), Diplom
         }
 
         fab.shown(isCreatingNew)
-        btShare.shown(isCurrentUserOwner)
-        btAccept.shown(isOfferedToCurrentUser)
+        btShare.shown(canShare())
+        btAccept.shown(canAccept())
     }
+
+    private fun canAccept() = isOfferedToCurrentUser()
+
+    private fun canShare() = isCurrentUserOwner() && account.getUser()!!.isStudent
 
 
     override fun showLecturers(value: List<Lecturer>) {
@@ -87,6 +105,11 @@ class DiplomaActivity : BaseMvpActivity<DiplomaView, DiplomaPresenter>(), Diplom
     override fun close() {
         finish()
     }
+
+    fun isCurrentUserOwner() =
+            graduateWork != null && graduateWork!!.isUserOwner(account.getUser()!!)
+    fun isOfferedToCurrentUser() =
+            graduateWork != null && graduateWork!!.isUserSubscribed(account.getUser()!!)
 
     private fun getText(editText: EditText, @StringRes errorMes: Int): String {
         return with(editText.text.trim()) {

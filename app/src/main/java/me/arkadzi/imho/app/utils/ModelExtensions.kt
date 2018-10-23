@@ -24,7 +24,7 @@ val User.grade
     get() = if (isLecturer) {
         "ктн"
     } else {
-        "студент $studentGroup"
+        "студент ${studentGroup ?: ""}"
     }
 
 fun Lecturer.asUser() =
@@ -40,7 +40,7 @@ fun AcademicDegree.mapToUI(context: Context) = UIAcademicDegree(
 fun List<AcademicDegree>.mapToUI(context: Context) = this.map { it.mapToUI(context) }
 
 fun GraduateWork.isUserSubscribed(user: User): Boolean {
-    return subscribers.any {it.recipientId == user.id}
+    return subscribers.any { it.recipientId == user.id }
 }
 
 fun GraduateWork.isUserOwner(user: User): Boolean {
