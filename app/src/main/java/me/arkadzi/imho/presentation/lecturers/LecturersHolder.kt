@@ -18,7 +18,7 @@ class LecturersHolder(
     override fun bind(data: Lecturer) {
         tvName.text = data.fullName
         tvGrade.text = data.grade
-        ivAvatar.setImageUrl(data.avatarUrl, round = true)
+//        ivAvatar.setImageUrl(data.avatarUrl, round = true)
     }
 
     val Lecturer.fullName
