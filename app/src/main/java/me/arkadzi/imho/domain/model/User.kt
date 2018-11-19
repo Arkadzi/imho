@@ -1,5 +1,6 @@
 package me.arkadzi.imho.domain.model
 
+import me.arkadzi.imho.app.utils.grade
 import java.io.Serializable
 
 open class User(val id: Long = 0,
