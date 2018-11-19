@@ -55,6 +55,6 @@ fun User.avatarUrl() = when (email) {
 
 fun User.grade() = when (email) {
     "karpenko.eugene@gmail.com" -> "к.т.н, доцент"
-    "ark@mail.me" -> "студент 6 курсу"
+    "ark@mail.me" -> "студент 6 курсу ТВ-71мп"
     else -> grade
 }
