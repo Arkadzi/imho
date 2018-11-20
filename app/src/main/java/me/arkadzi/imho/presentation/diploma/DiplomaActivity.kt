@@ -128,6 +128,7 @@ class DiplomaActivity : BaseMvpActivity<DiplomaView, DiplomaPresenter>(), Diplom
             }
         }
         spPriority.gone()
+
         val uiDegrees = AcademicDegree.values().toList().mapToUI(this)
         spYear.adapter = ArrayAdapter<UIAcademicDegree>(this, R.layout.item_spinner, uiDegrees)
     }

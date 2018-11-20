@@ -102,6 +102,7 @@ class ProfileActivity : BaseMvpActivity<ProfileView, ProfilePresenter>(), Profil
                     when (menuItem.itemId) {
                         R.id.it_labs -> Launcher.startLabsActivity(this@ProfileActivity)
                         R.id.it_lecturers -> Launcher.startLecturersActivity(this@ProfileActivity)
+                        R.id.it_calendar -> Launcher.startCalendarActivity(this@ProfileActivity)
                         R.id.it_logout -> {
                             app.logout()
                             Launcher.startLoginScreen(this@ProfileActivity)

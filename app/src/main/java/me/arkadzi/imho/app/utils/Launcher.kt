@@ -7,6 +7,7 @@ import me.arkadzi.imho.domain.model.Lab
 import me.arkadzi.imho.domain.model.LabPriority
 import me.arkadzi.imho.domain.model.User
 import me.arkadzi.imho.presentation.base.LabContentActivity
+import me.arkadzi.imho.presentation.chart.CalendarActivity
 import me.arkadzi.imho.presentation.diploma.DiplomaActivity
 import me.arkadzi.imho.presentation.lab_content.LabPriorityActivity
 import me.arkadzi.imho.presentation.labs.LabsActivity
@@ -49,5 +50,9 @@ object Launcher {
         activity.startActivity(Intent(activity, DiplomaActivity::class.java).apply {
             putExtra(DiplomaActivity.ARG_DIPLOMA, graduateWork)
         })
+    }
+
+    fun startCalendarActivity(activity: Activity) {
+        activity.startActivity(Intent(activity, CalendarActivity::class.java))
     }
 }

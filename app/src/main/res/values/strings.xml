@@ -28,4 +28,5 @@
     <string name="mes_offered_successfully">Запропоновано</string>
     <string name="hint_proposed_to">Запропроновано</string>
     <string name="hint_author">Автор</string>
+    <string name="hint_graphics">Календар</string>
 </resources>
