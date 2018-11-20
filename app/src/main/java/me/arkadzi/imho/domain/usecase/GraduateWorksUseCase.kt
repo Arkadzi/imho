@@ -13,12 +13,12 @@ class GraduateWorksUseCase @Inject constructor(
         observeOn: ObserveOn,
         private val repository: Repository
 ) : ListUseCase<GraduateWork>(subscribeOn, observeOn) {
-    var userId: Long by Delegates.notNull()
+    lateinit var email: String
     var isOwner: Boolean by Delegates.notNull()
 
-    fun setData(userId: Long, isOwner: Boolean) {
-        this.userId = userId
+    fun setData(email: String, isOwner: Boolean) {
+        this.email = email
         this.isOwner = isOwner
     }
-    override fun useCaseObservable() = repository.getGraduateWorks(userId, isOwner)
+    override fun useCaseObservable() = repository.getGraduateWorks(email, isOwner)
 }

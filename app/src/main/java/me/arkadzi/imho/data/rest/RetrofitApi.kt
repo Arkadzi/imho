@@ -29,10 +29,10 @@ interface RetrofitApi {
     fun getLabsByLecturers(@Path("lectId") lectId: Long): Single<List<Lab>>
 
     @GET("graduateWorks/own")
-    fun getOwnGraduateWorks(@Query("userId") userId: Long): Single<List<GraduateWork>>
+    fun getOwnGraduateWorks(@Query("email") userId: Long): Single<List<GraduateWork>>
 
     @GET("graduateWorks/offered")
-    fun getOfferedGraduateWorks(@Query("userId") userId: Long): Single<List<GraduateWork>>
+    fun getOfferedGraduateWorks(@Query("email") userId: Long): Single<List<GraduateWork>>
 
     @POST("graduateWorks")
     fun createGraduateWork(@Body graduateWork: GraduateWork): Single<ResponseBody>
@@ -43,7 +43,7 @@ interface RetrofitApi {
     @POST("graduateWorks/offer")
     fun offerWork(
             @Query("workId") workId: Long,
-            @Query("userId") userId: Long,
+            @Query("email") userId: Long,
             @Query("cancel") cancel: Boolean
     ): Single<ResponseBody>
 

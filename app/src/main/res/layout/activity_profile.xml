@@ -79,17 +79,31 @@
                     app:layout_constraintTop_toBottomOf="@+id/tvGrade" />
 
                 <TextView
-                    android:id="@+id/textView3"
+                    android:id="@+id/greenMessage"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="8dp"
-                    android:text="TextView"
+                    android:textColor="#64dd17"
                     android:visibility="invisible"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/ivAvatar" />
+
+                <TextView
+                    android:id="@+id/redMessage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:textColor="#d50000"
+                    android:visibility="invisible"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/greenMessage" />
+
 
                 <TextView
                     android:id="@+id/textView4"
@@ -102,7 +116,7 @@
                     android:textAppearance="@style/Base.TextAppearance.AppCompat.Title"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView3" />
+                    app:layout_constraintTop_toBottomOf="@+id/redMessage" />
 
                 <android.support.design.widget.TabLayout
                     android:id="@+id/tabView"

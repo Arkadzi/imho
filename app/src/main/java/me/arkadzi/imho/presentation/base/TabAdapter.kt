@@ -94,8 +94,8 @@ class DiplomasAdapter(baseActivity: BaseActivity) : FragmentTabAdapter(baseActiv
     override fun generateFragment(position: Int, params: Array<Any>): BaseFragment {
         val user = params[0] as User
         return when (position) {
-            0 -> DiplomaListFragment.getInstance(user.id, true)
-            1 -> DiplomaListFragment.getInstance(user.id, false)
+            0 -> DiplomaListFragment.getInstance(user.email, true)
+            1 -> DiplomaListFragment.getInstance(user.email, false)
             else -> throw IllegalArgumentException("DiplomasAdapter generateFragment position:$position")
         }
     }

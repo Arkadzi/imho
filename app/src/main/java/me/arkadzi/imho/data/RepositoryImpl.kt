@@ -4,6 +4,7 @@ import io.reactivex.Single
 import me.arkadzi.imho.data.rest.RestApi
 import me.arkadzi.imho.domain.Repository
 import me.arkadzi.imho.domain.model.*
+import java.util.*
 
 class RepositoryImpl(
         private val restApi: RestApi,
@@ -43,12 +44,22 @@ class RepositoryImpl(
         return restApi.getLecturers(labId)
     }
 
-    override fun getGraduateWorks(userId: Long, owner: Boolean): Single<List<GraduateWork>> {
-        return if (owner) {
-            restApi.getOwnGraduateWorks(userId)
+    override fun getGraduateWorks(email: String, owner: Boolean): Single<List<GraduateWork>> {
+        return Single.just(if (owner) {
+            listOf(
+                    GraduateWork(1, "тема 1", "опис 1", 1, Random().nextInt(4)),
+                    GraduateWork(2, "тема 2", "опис 2", 1, Random().nextInt(4)),
+                    GraduateWork(3, "тема 3", "опис 3", 1, Random().nextInt(4)),
+                    GraduateWork(4, "тема 4", "опис 4", 1, Random().nextInt(4))
+            )
         } else {
-            restApi.getOfferedGraduateWorks(userId)
-        }
+            listOf(
+                    GraduateWork(1, "тема A", "опис 1", 1, 1 + Random().nextInt(4)),
+                    GraduateWork(2, "тема B", "опис 2", 1, 1 + Random().nextInt(4)),
+                    GraduateWork(3, "тема C", "опис 3", 1, 1 + Random().nextInt(4)),
+                    GraduateWork(4, "тема D", "опис 4", 1, 1 + Random().nextInt(4))
+            )
+        })
     }
 
     override fun getLabPriorities(labId: Long): Single<List<LabPriority>> {

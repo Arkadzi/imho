@@ -9,7 +9,7 @@ interface Repository {
     fun getLabs(lectureId: Long?): Single<List<Lab>>
     fun getLecturers(labId: Long?): Single<List<Lecturer>>
     fun getLabPriorities(labId: Long): Single<List<LabPriority>>
-    fun getGraduateWorks(userId: Long, owner: Boolean): Single<List<GraduateWork>>
+    fun getGraduateWorks(email: String, owner: Boolean): Single<List<GraduateWork>>
     fun createGraduateWork(graduateWork: GraduateWork): Single<Boolean>
     fun getLabAndPriorities(priorityId: Long): Single<LabAndPriority>
     fun offerWork(workId: Long, userId: Long, cancel: Boolean): Single<Boolean>

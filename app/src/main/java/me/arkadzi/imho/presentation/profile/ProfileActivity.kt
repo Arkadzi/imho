@@ -39,6 +39,16 @@ class ProfileActivity : BaseMvpActivity<ProfileView, ProfilePresenter>(), Profil
         tvName.text = user.fullName
         tvGrade.text = user.grade()
         tvEmail.text = user.email
+        val greenText = user.getGreenText()
+        if (greenText != null) {
+            greenMessage.text = greenText
+            greenMessage.visible()
+        }
+        val redText = user.getRedText()
+        if (redText != null) {
+            redMessage.text = redText
+            redMessage.visible()
+        }
         ivAvatar.setImageUrl(user.avatarUrl(), round = true)
     }
 

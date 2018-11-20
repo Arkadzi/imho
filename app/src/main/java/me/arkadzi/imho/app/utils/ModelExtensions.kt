@@ -40,7 +40,7 @@ fun AcademicDegree.mapToUI(context: Context) = UIAcademicDegree(
 fun List<AcademicDegree>.mapToUI(context: Context) = this.map { it.mapToUI(context) }
 
 fun GraduateWork.isUserSubscribed(user: User): Boolean {
-    return subscribers.any { it.recipientId == user.id }
+    return false/*subscribers.any { it.recipientId == user.id }*/
 }
 
 fun GraduateWork.isUserOwner(user: User): Boolean {
@@ -57,4 +57,16 @@ fun User.grade() = when (email) {
     "karpenko.eugene@gmail.com" -> "к.т.н, доцент"
     "ark@mail.me" -> "студент 6 курсу ТВ-71мп"
     else -> grade
+}
+
+fun User.getRedText() = when(email) {
+    "karpenko.eugene@gmail.com" -> "бакалаврів набрано"
+    "ark@mail.me" -> "тему не підтверджено"
+    else -> null
+}
+
+fun User.getGreenText() = when(email) {
+    "karpenko.eugene@gmail.com" -> "магістрів залишилось: 2"
+    "ark@mail.me" -> null
+    else -> null
 }
