@@ -96,7 +96,7 @@ class DiplomaActivity : BaseMvpActivity<DiplomaView, DiplomaPresenter>(), Diplom
             val labPriority = spPriority.selectedItem() as? LabPriority
                     ?: throw IllegalArgumentException(getString(R.string.warn_choose_priprity))
             val academicDegree = (spYear.selectedItem as UIAcademicDegree).academicDegree
-            presenter.onCreateGraduateWork(GraduateWork(0, subject, description, 1, 0))
+            presenter.onCreateGraduateWork(GraduateWork(0, subject, description, 1, listOf()))
         } catch (e: IllegalArgumentException) {
             showMessage(e.message!!)
         }

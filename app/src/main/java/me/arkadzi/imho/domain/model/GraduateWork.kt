@@ -7,6 +7,6 @@ class GraduateWork(
         var title: String,
         var description: String?,
         var labPriorityId: Long,
-        var subsCount: Int,
+        val subscribers: List<User>,
         var owner: User? = null
 ): Serializable

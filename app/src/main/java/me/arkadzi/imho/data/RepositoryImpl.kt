@@ -44,20 +44,24 @@ class RepositoryImpl(
         return restApi.getLecturers(labId)
     }
 
+
     override fun getGraduateWorks(email: String, owner: Boolean): Single<List<GraduateWork>> {
+        val smak = User(101, "smakovskiy-ds@apeps.kiev.ua", "RvTZ5y1F", "Денис", "Сергійович", "Смаковський", "http://apeps.kiev.ua/images/lecturer/profile/smakovskiy-ds.jpg", TYPE_LECTURER)
+        val tyh = User(102, "tikhokhod@mail.ru", "iM2DJjsw", "Володимир", "Олександрович", "Тихоход", "http://apeps.kpi.ua/images/teachers/Tyhohod.jpg", TYPE_LECTURER)
+        val karp = User(103, "karpenko.eugene@gmail.com", "QluAGE3i", "Євген", "Юрійович", "Карпенко", "https://scontent.fiev10-1.fna.fbcdn.net/v/t1.0-1/c0.0.160.160/p160x160/18119535_1311624472286812_1590395396869357411_n.jpg?_nc_cat=104&_nc_ht=scontent.fiev10-1.fna&oh=994fed0ece5a723ce3012447dc51e7bc&oe=5C6A9758", TYPE_LECTURER)
         return Single.just(if (owner) {
             listOf(
-                    GraduateWork(1, "тема 1", "опис 1", 17, Random().nextInt(4)),
-                    GraduateWork(2, "тема 2", "опис 2", 17, Random().nextInt(4)),
-                    GraduateWork(3, "тема 3", "опис 3", 16, Random().nextInt(4)),
-                    GraduateWork(4, "тема 4", "опис 4", 16, Random().nextInt(4))
+                    GraduateWork(1, "тема 1", "опис 1", 7, listOf(karp, tyh, smak)),
+                    GraduateWork(2, "тема 2", "опис 2", 7, listOf(karp, tyh)),
+                    GraduateWork(3, "тема 3", "опис 3", 8, listOf(karp, smak)),
+                    GraduateWork(4, "тема 4", "опис 4", 8, listOf(karp))
             )
         } else {
             listOf(
-                    GraduateWork(1, "тема A", "опис 1", 15, 1 + Random().nextInt(4)),
-                    GraduateWork(2, "тема B", "опис 2", 16, 1 + Random().nextInt(4)),
-                    GraduateWork(3, "тема C", "опис 3", 17, 1 + Random().nextInt(4)),
-                    GraduateWork(4, "тема D", "опис 4", 15, 1 + Random().nextInt(4))
+                    GraduateWork(1, "тема A", "опис 1", 7, listOf(karp, tyh)),
+                    GraduateWork(2, "тема B", "опис 2", 8, listOf(karp)),
+                    GraduateWork(3, "тема C", "опис 3", 9, listOf(karp, smak)),
+                    GraduateWork(4, "тема D", "опис 4", 10, listOf(karp))
             )
         })
     }
