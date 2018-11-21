@@ -2,6 +2,7 @@ package me.arkadzi.imho.presentation.diploma
 
 import android.support.annotation.StringRes
 import android.support.v7.app.AlertDialog
+import android.support.v7.widget.LinearLayoutManager
 import android.widget.ArrayAdapter
 import android.widget.EditText
 import android.widget.Spinner
@@ -12,6 +13,7 @@ import me.arkadzi.imho.app.lsteners.SpinnerSelectListener
 import me.arkadzi.imho.app.utils.*
 import me.arkadzi.imho.domain.model.*
 import me.arkadzi.imho.presentation.base.BaseMvpActivity
+import me.arkadzi.imho.presentation.lecturers.SubscribersAdapter
 import me.arkadzi.imho.presentation.model.UIAcademicDegree
 import javax.inject.Inject
 
@@ -35,6 +37,15 @@ class DiplomaActivity : BaseMvpActivity<DiplomaView, DiplomaPresenter>(), Diplom
         etSubject.isEnabled = isCreatingNew
         etDescription.isEnabled = isCreatingNew
         initAuthorView()
+        val subscribers = graduateWork?.subscribers
+        if (subscribers != null) {
+            rvSubscribers.layoutManager = LinearLayoutManager(this)
+            val subscribersAdapter = SubscribersAdapter(layoutInflater)
+            rvSubscribers.adapter = subscribersAdapter
+            subscribersAdapter.data = subscribers
+        } else {
+            rvSubscribers.gone()
+        }
         initButtons()
 
     }
@@ -45,7 +56,7 @@ class DiplomaActivity : BaseMvpActivity<DiplomaView, DiplomaPresenter>(), Diplom
             val owner = work.owner!!
             tvName.text = owner.fullName
             tvGrade.text = owner.grade
-            ivAvatar.setImageUrl(owner.avatarUrl, round = true)
+            ivAvatar.setImageUrl(owner.avatar(), round = true)
             authorView.visible()
             shadowView.visible()
         } else {

@@ -23,7 +23,7 @@
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead" />
 
         <include
-            layout="@layout/item_lecturer"
+            layout="@layout/item_subscriber"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
     </LinearLayout>
@@ -139,10 +139,16 @@
                 android:text="@string/action_offer"
                 android:visibility="gone"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/spYear" />
+                app:layout_constraintTop_toBottomOf="@id/btShare" />
 
 
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rvSubscribers"
+                app:layout_constraintTop_toBottomOf="@id/btAccept"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
         </android.support.constraint.ConstraintLayout>
+
     </android.support.v4.widget.NestedScrollView>
 
     <View

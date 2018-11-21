@@ -5,22 +5,25 @@ import android.view.ViewGroup
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.item_lecturer.*
 import me.arkadzi.imho.R
+import me.arkadzi.imho.app.utils.avatar
+import me.arkadzi.imho.app.utils.grade
 import me.arkadzi.imho.app.utils.setImageUrl
 import me.arkadzi.imho.domain.model.Lecturer
+import me.arkadzi.imho.domain.model.User
 import me.arkadzi.imho.presentation.adapters.BaseHolder
 
-class LecturersHolder(
+class SubscribersHolder(
         inflater: LayoutInflater,
         parent: ViewGroup
-) : BaseHolder<Lecturer>(inflater.inflate(R.layout.item_lecturer, parent, false)),
+) : BaseHolder<User>(inflater.inflate(R.layout.item_subscriber, parent, false)),
         LayoutContainer {
 
-    override fun bind(data: Lecturer) {
+    override fun bind(data: User) {
         tvName.text = data.fullName
-        tvGrade.text = data.grade
-//        ivAvatar.setImageUrl(data.avatar, round = true)
+        tvGrade.text = data.grade()
+        ivAvatar.setImageUrl(data.avatar(), round = true)
     }
 
-    val Lecturer.fullName
+    val User.fullName
         get() = "$lastName $firstName $middleName"
 }

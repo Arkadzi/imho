@@ -47,8 +47,8 @@ fun GraduateWork.isUserOwner(user: User): Boolean {
     return this.owner!!.id == user.id
 }
 
-fun User.avatarUrl() = when (email) {
-//    "karpenko.eugene@gmail.com" -> ""
+fun User.avatar() = when (email) {
+    "karpenko.eugene@gmail.com" -> "https://scontent.fiev10-1.fna.fbcdn.net/v/t1.0-1/c0.0.160.160/p160x160/18119535_1311624472286812_1590395396869357411_n.jpg?_nc_cat=104&_nc_ht=scontent.fiev10-1.fna&oh=994fed0ece5a723ce3012447dc51e7bc&oe=5C6A9758"
     "ark@mail.me" -> "https://scontent.fiev10-1.fna.fbcdn.net/v/t1.0-1/p160x160/36177222_1779391162147519_6289464277635956736_n.jpg?_nc_cat=106&_nc_ht=scontent.fiev10-1.fna&oh=7ecb759161d335cd95f274eeca61b567&oe=5CB1C30E"
     else -> avatarUrl
 }

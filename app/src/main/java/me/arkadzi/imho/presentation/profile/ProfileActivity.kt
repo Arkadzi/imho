@@ -49,7 +49,7 @@ class ProfileActivity : BaseMvpActivity<ProfileView, ProfilePresenter>(), Profil
             redMessage.text = redText
             redMessage.visible()
         }
-        ivAvatar.setImageUrl(user.avatarUrl(), round = true)
+        ivAvatar.setImageUrl(user.avatar(), round = true)
     }
 
     override fun injectSelf() {
