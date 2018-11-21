@@ -14,6 +14,6 @@ class DiplomaPresenter @Inject constructor(messages: Messages,
 ) : BaseListPresenter<GraduateWork, DiplomaListView<GraduateWork>>(messages, listUseCase) {
 
     override fun initUseCase(view: DiplomaListView<GraduateWork>) {
-        listUseCase.setData(view.userId, view.isOwner)
+        listUseCase.setData(view.user.email, view.isOwner)
     }
 }

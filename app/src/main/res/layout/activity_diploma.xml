@@ -55,7 +55,8 @@
                     android:id="@+id/etSubject"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/graduate_work_subject" />
+                    android:hint="@string/graduate_work_subject"
+                    android:textColor="#000" />
             </android.support.design.widget.TextInputLayout>
 
 
@@ -76,7 +77,8 @@
                     android:layout_height="wrap_content"
                     android:gravity="top"
                     android:hint="@string/graduate_work_desctiption"
-                    android:lines="5" />
+                    android:lines="5"
+                    android:textColor="#000" />
             </android.support.design.widget.TextInputLayout>
 
             <Spinner

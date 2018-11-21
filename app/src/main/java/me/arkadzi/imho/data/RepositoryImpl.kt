@@ -47,17 +47,17 @@ class RepositoryImpl(
     override fun getGraduateWorks(email: String, owner: Boolean): Single<List<GraduateWork>> {
         return Single.just(if (owner) {
             listOf(
-                    GraduateWork(1, "тема 1", "опис 1", 1, Random().nextInt(4)),
-                    GraduateWork(2, "тема 2", "опис 2", 1, Random().nextInt(4)),
-                    GraduateWork(3, "тема 3", "опис 3", 1, Random().nextInt(4)),
-                    GraduateWork(4, "тема 4", "опис 4", 1, Random().nextInt(4))
+                    GraduateWork(1, "тема 1", "опис 1", 17, Random().nextInt(4)),
+                    GraduateWork(2, "тема 2", "опис 2", 17, Random().nextInt(4)),
+                    GraduateWork(3, "тема 3", "опис 3", 16, Random().nextInt(4)),
+                    GraduateWork(4, "тема 4", "опис 4", 16, Random().nextInt(4))
             )
         } else {
             listOf(
-                    GraduateWork(1, "тема A", "опис 1", 1, 1 + Random().nextInt(4)),
-                    GraduateWork(2, "тема B", "опис 2", 1, 1 + Random().nextInt(4)),
-                    GraduateWork(3, "тема C", "опис 3", 1, 1 + Random().nextInt(4)),
-                    GraduateWork(4, "тема D", "опис 4", 1, 1 + Random().nextInt(4))
+                    GraduateWork(1, "тема A", "опис 1", 15, 1 + Random().nextInt(4)),
+                    GraduateWork(2, "тема B", "опис 2", 16, 1 + Random().nextInt(4)),
+                    GraduateWork(3, "тема C", "опис 3", 17, 1 + Random().nextInt(4)),
+                    GraduateWork(4, "тема D", "опис 4", 15, 1 + Random().nextInt(4))
             )
         })
     }

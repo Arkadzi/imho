@@ -8,5 +8,5 @@ class GraduateWork(
         var description: String?,
         var labPriorityId: Long,
         var subsCount: Int,
-        val owner: User? = null
+        var owner: User? = null
 ): Serializable
